@@ -54,7 +54,7 @@ npm run test:site
 
 The browser checks visit every generated page, verify internal links and anchors, check desktop/mobile overflow, and exercise search, mobile navigation, both labs, and reading without JavaScript. Screenshots go into ignored `.qa/`. The script uses local Google Chrome on macOS when available; `CHROME_PATH` selects another executable. `SITE_URL=https://example.com` runs against a deployed build.
 
-GitHub Actions runs the build, model tests, printed-example tests, and browser checks for pull requests and pushes to `main`.
+Checks and publishing are run manually. There are no GitHub Actions workflows.
 
 ## Deploy
 
@@ -67,7 +67,7 @@ npm run deploy
 
 Authenticate Wrangler to the intended account first. Forks must change the Worker name, remove or replace the production route, and update `https://fanpilot.app` in the builder's canonical URLs and sitemap. `CLOUDFLARE_ACCOUNT_ID` can select the account without storing credentials in the repository. The config pins the compatibility date and the lockfile pins Wrangler.
 
-The deployment config enables observability for any future Worker execution; direct static-asset requests do not run application code. Production deployment is manual. The CI workflow needs no deployment credentials.
+Direct static-asset requests do not run application code. Production deployment is manual.
 
 ## Contribute and reuse
 
