@@ -43,8 +43,12 @@ try {
     if(ids.has(url.pathname)) {
       if(url.hash) assert.ok(ids.get(url.pathname).has(decodeURIComponent(url.hash.slice(1))), `Missing anchor ${url.pathname+url.hash} linked by ${source}`);
     } else {
-      const response = await context.request.get(url.href);
-      assert.equal(response.status(),200,`Broken link ${url.pathname} linked by ${source}`);
+      const status = await page.evaluate(async href => {
+        const response = await fetch(href);
+        await response.body?.cancel();
+        return response.status;
+      }, url.href);
+      assert.equal(status,200,`Broken link ${url.pathname} linked by ${source}`);
     }
   }
 
@@ -65,6 +69,7 @@ try {
   assert.equal(await page.locator('#content-shell').evaluate(e=>e.inert),true);
   await page.locator('#book-search').fill('LRU cache');
   await page.locator('#search-results a').filter({hasText:'Design an LRU cache'}).first().click();
+  await page.waitForLoadState('load');
   assert.equal(new URL(page.url()).pathname,'/system-design/lru-cache/');
   assert.equal(await page.locator('#sidebar').evaluate(e=>e.inert),true);
 
@@ -85,6 +90,8 @@ try {
   await page.locator('#lru-lab').screenshot({path:'.qa/lru-mobile.png'});
   await page.setViewportSize({width:1440,height:1000});
   await page.locator('#lru-lab').screenshot({path:'.qa/lru-desktop.png'});
+  await page.getByRole('button',{name:'Copy code example'}).first().click();
+  await page.waitForFunction(()=>document.getElementById('copy-status').textContent.startsWith('Code '));
 
   await page.goto(new URL('/system-design/file-system/',base).href);
   for(let i=0;i<6;i++) await page.locator('#fs-step').click();
@@ -113,7 +120,26 @@ try {
   assert.match(await reader.locator('h1').innerText(),/Heaps/);
   assert.ok(await reader.locator('.prose').innerText().then(t=>t.length)>500);
   assert.equal(await reader.locator('.sidebar').isVisible(),true);
+  assert.ok((await reader.locator('.sidebar').boundingBox()).x>=0);
   await noJs.close();
+  if(base.protocol==='https:') {
+    const deployment = await page.evaluate(async () => {
+      const root = await fetch('/');
+      const redirect = await fetch('/system-design/lru-cache');
+      const missing = await fetch('/page-that-does-not-exist');
+      return {root:root.status,policy:root.headers.get('Content-Security-Policy'),
+        nosniff:root.headers.get('X-Content-Type-Options'),redirect:redirect.url,
+        missing:missing.status,body:await missing.text()};
+    });
+    assert.equal(deployment.root,200);
+    assert.equal(deployment.nosniff,'nosniff');
+    assert.match(deployment.policy,/script-src 'self'/);
+    assert.ok(deployment.redirect.endsWith('/lru-cache/'));
+    assert.equal(deployment.missing,404);
+    assert.match(deployment.body,/That page is not here/);
+    // Chrome logs a failed resource for the deliberately requested 404.
+    for(let i=errors.length-1;i>=0;i--) if(errors[i]==='Failed to load resource: the server responded with a status of 404 ()') errors.splice(i,1);
+  }
   assert.deepEqual(errors,[],'Browser errors');
   console.log(`Verified ${manifest.pages.length} routes, ${links.size} internal link targets, desktop/mobile layouts, search, both labs, and reading without JavaScript.`);
 } finally { await browser.close(); }
