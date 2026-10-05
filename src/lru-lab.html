@@ -1,0 +1,11 @@
+<section class="lab" id="lru-lab" aria-label="Interactive LRU cache">
+  <div class="lab-heading"><div><span class="lab-kicker">TRY THE DESIGN</span><h3>Which entry would you evict?</h3></div><label>Capacity <select id="lru-capacity"><option>1</option><option selected>2</option><option>3</option><option>4</option></select></label></div>
+  <p class="lab-instruction">Predict the next state, then run an operation. Changing capacity resets the cache.</p>
+  <div class="lab-controls"><button id="lru-step" class="primary-button" type="button">Run next: put(A, 10)</button><button id="lru-reset" type="button">Reset</button><span id="lru-step-count">0 / 7 steps</span></div>
+  <div class="recency-labels"><span>Most recently used</span><span>Least recently used</span></div>
+  <div id="lru-nodes" class="lru-nodes" aria-label="Cache entries in recency order"><p>The cache is empty.</p></div>
+  <div class="lab-summary"><span id="lru-size">0 / 2 entries</span><span id="lru-invariants">Map and list agree · links valid</span></div>
+  <p id="lru-explanation" class="operation-result" aria-live="polite">Start with an empty cache. Which operation first forces an eviction?</p>
+  <details class="lab-custom"><summary>Try your own operations</summary><form id="lru-form"><label>Operation<select id="lru-operation"><option value="put">put</option><option value="get">get</option></select></label><label>Key<input id="lru-key" value="D" maxlength="12" required></label><label>Value<input id="lru-value" value="40" maxlength="24"></label><button type="submit">Run operation</button></form></details>
+  <details class="lab-history"><summary>Operation history</summary><ol id="lru-history"></ol></details>
+</section>

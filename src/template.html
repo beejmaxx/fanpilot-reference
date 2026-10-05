@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{PAGE_TITLE}} · Fanpilot</title>
+  <meta name="description" content="{{DESCRIPTION}}"><meta name="color-scheme" content="light">
+  <link rel="canonical" href="{{CANONICAL}}"><meta property="og:title" content="{{PAGE_TITLE}} · Fanpilot"><meta property="og:description" content="{{DESCRIPTION}}"><meta property="og:type" content="article"><meta property="og:url" content="{{CANONICAL}}">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script><script type="module" src="/lru-lab.mjs"></script><script type="module" src="/filesystem-lab.mjs"></script>
+</head>
+<body data-page="{{PAGE_ID}}">
+  <a class="skip-link" href="#reader">Skip to the lesson</a>
+  <div class="mobile-bar"><a class="mobile-brand" href="/">Fanpilot</a><button id="menu-button" aria-expanded="false" aria-controls="sidebar" type="button">Chapters</button></div>
+  <button class="scrim" id="scrim" aria-label="Close navigation" tabindex="-1" hidden></button>
+  <aside class="sidebar" id="sidebar" aria-label="Reference navigation">
+    <a class="brand" href="/"><span class="brand-mark" aria-hidden="true">[/]</span><span><strong>Fanpilot</strong><br><span class="brand-subtitle">The engineering reference</span></span></a>
+    <p class="edition-label">Learn. Reason. Build.<span>Free</span></p>
+    <div class="search-box"><svg aria-hidden="true" viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m16 16 5 5"></path></svg><label class="sr-only" for="book-search">Search the reference</label><input id="book-search" type="search" placeholder="Search the guide" autocomplete="off" aria-controls="search-results"><kbd aria-hidden="true">/</kbd></div>
+    <p id="search-status" class="search-status" role="status" aria-live="polite"></p>
+    <nav id="chapter-navigation" class="chapter-navigation" aria-label="Lessons">{{NAVIGATION}}</nav>
+    <nav id="search-results" class="search-results" aria-label="Search results" hidden></nav>
+    <div class="sidebar-footer"><span>32 pattern chapters · 2 design labs</span><a href="/research/">Research & sources</a><a href="/about/">About & attribution</a></div>
+  </aside>
+  <div class="book-shell" id="content-shell">
+    <header class="topbar"><p>A FREE GUIDE TO REASONING ABOUT SOFTWARE</p><div><a href="/leetcode-bible-patterns.pdf">PDF edition</a><a href="/patterns/selected-problem-index/">Practice</a></div></header>
+    <div class="reading-layout">
+      <main id="reader" tabindex="-1">
+        <noscript><p class="notice">The lessons work without JavaScript. Interactive labs and search require it.</p></noscript>
+        {{ARTICLE}}
+        <footer class="reader-footer"><span>Fanpilot · Working edition</span><div><a href="https://github.com/beejmaxx/fanpilot-reference">Source & contribute</a><a href="/LICENSE-CONTENT.txt">CC BY-SA 4.0</a><a href="/LICENSE-CODE.txt">Code: MIT</a></div></footer>
+      </main>
+      <aside class="page-outline" aria-label="On this page"><div id="outline-content"></div></aside>
+    </div>
+  </div>
+  <div id="copy-status" class="copy-status" role="status" aria-live="polite"></div>
+  <script id="chapter-data" type="application/json">{{CHAPTER_DATA}}</script>
+</body>
+</html>
