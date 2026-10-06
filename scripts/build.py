@@ -15,6 +15,7 @@ from pygments import highlight
 from pygments.lexers import PythonLexer
 from pygments.formatters import HtmlFormatter
 from solution_browser import build_browser, json_asset
+from practice import build_practice
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / 'src'
@@ -169,7 +170,7 @@ def build(destination):
                 f'<li><a href="{url}">{label}</a><p>{HUB_DESCRIPTIONS[key]}</p></li>'
                 for key,url,label,group in EXTRA if group=='hub' and key!='index').replace(
                 '</li><li><a href="/data-structures/">',
-                '</li><li><a href="/solutions/">Browse solutions</a><p>Flip through every Python solution, one problem per screen.</p></li><li><a href="/data-structures/">',1)+'</ul>'
+                '</li><li><a href="/practice/">Practice</a><p>Solve each problem in your browser, with tests, hints, and the walkthrough beside you.</p></li><li><a href="/data-structures/">',1)+'</ul>'
             content=content.replace('<p>{{LEARNING_PATHS}}</p>',cards).replace('<p>{{HERO_TRACE}}</p>',(SOURCE/'hero-trace.html').read_text())
         plain=html.unescape(re.sub('<[^>]+>',' ',content.replace('{{PROBLEM_LIBRARY}}','')));plain=re.sub(r'\s+',' ',plain).strip()
         if page['id']=='problems':content=content.replace('<p>{{PROBLEM_LIBRARY}}</p>',library['html'])
@@ -216,7 +217,7 @@ def build(destination):
             hub=next(e for e in EXTRA if e[0]==section)
             nav.append(f'<h2 class="nav-group"><a href="{hub[1]}">{hub[2]}</a></h2><ol class="chapter-list">')
             nav.append(link(hub[1],'Overview',page.get('key')==section))
-            if section=='worked':nav.append(link('/solutions/','Browse all solutions →',False))
+            if section=='worked':nav.append(link('/practice/','Practice in your browser →',False))
             for key,url,label,group in EXTRA:
                 if section_of.get(key)==section and group!='hub':nav.append(link(url,label,page.get('key')==key))
             nav.append('</ol>')
@@ -225,7 +226,7 @@ def build(destination):
             for key,url,label,group in hubs:
                 children=[e for e in EXTRA if section_of.get(e[0])==key and e[3]!='hub']
                 inner=''.join(link(u,l,page.get('key')==k) for k,u,l,g in children)
-                if key=='worked':inner=link('/solutions/','Browse all solutions →',False)+inner
+                if key=='worked':inner=link('/practice/','Practice in your browser →',False)+inner
                 nav.append(link(url,label,page.get('key')==key).replace('</li>',(f'<ol class="chapter-list nested">{inner}</ol>' if inner else '')+'</li>'))
             nav.append('</ol>')
         title=html.escape(page['title'])
@@ -234,7 +235,7 @@ def build(destination):
         else:meta='<span></span>'
         article=f'<article class="chapter" id="{page["id"]}"><header class="chapter-heading"><p class="chapter-meta">{meta}<span>{page["minutes"]} min read</span></p><h1 tabindex="-1">{title}</h1></header><div class="prose">{page["content"]}</div></article>'
         if page.get('key', '').startswith('worked/'):
-            controls = '<p class="lesson-controls"><a href="/solutions/#' + page['key'].split('/')[-1] + '">Just the code? Flip through every solution →</a></p>'
+            controls = '<p class="lesson-controls"><a href="/practice/#' + page['key'].split('/')[-1] + '">Solve it yourself in the practice workspace →</a></p>'
             article = article.replace('<div class="prose">', controls + '<div class="prose">', 1)
         pager=[]
         if page.get('key', '').startswith('worked/'):
@@ -262,6 +263,7 @@ def build(destination):
         output=destination/page['url'].lstrip('/')/'index.html';output.parent.mkdir(parents=True,exist_ok=True)
         pending=output.with_suffix('.html.tmp');pending.write_text(result);pending.replace(output)
     build_browser(ROOT, destination, EXTRA)
+    build_practice(ROOT, destination, EXTRA)
     (destination/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join('<url><loc>https://fanpilot.app'+p['url']+'</loc></url>' for p in pages)+'</urlset>\n')
     (destination/'robots.txt').write_text('User-agent: *\nAllow: /\nSitemap: https://fanpilot.app/sitemap.xml\n')
     (destination/'404.html').write_text('<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Page not found · Fanpilot</title><link rel="stylesheet" href="/styles.css"><main class="not-found"><p><a class="brand" href="/">Fanpilot</a></p><h1>That page is not here.</h1><p>The address may be mistyped, or the page may have moved. <a href="/">Go to the start page</a> or <a href="/problems/">search the problem library</a>.</p></main></html>')

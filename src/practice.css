@@ -1,0 +1,140 @@
+/* SPDX-License-Identifier: MIT */
+/* Practice workspace: panels on a tinted canvas, problem beside (or above) code and tests. */
+.ws{--ws-split:42%;--ws-code:62%;--ws-gap:8px;--ws-bar:52px;--ed-font:14px;--ed-line:calc(var(--ed-font) * 1.6);--ed-pad:12px;
+  height:100dvh;overflow:hidden;display:flex;flex-direction:column;margin:0;background:var(--wash);font-family:var(--sans);color:var(--body)}
+@media(prefers-color-scheme:dark){.ws{background:#0f1226}}
+.ws button{font:500 .85rem/1.3 var(--sans)}
+.ws svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.ws-muted{color:var(--muted);font-size:.88rem}
+
+/* Top bar */
+.ws-top{height:var(--ws-bar);flex-shrink:0;display:flex;align-items:center;gap:.6rem;padding:0 calc(var(--ws-gap) + 4px)}
+.ws-top .brand{margin-right:.2rem}
+.ws-list-button{display:flex;align-items:center;gap:.45rem;padding:.4rem .7rem;background:transparent;border-color:transparent}
+.ws-list-button:hover,.ws-icon:hover{background:var(--raised);border-color:var(--rule-strong)}
+.ws-flip{display:flex;gap:.15rem}
+.ws-icon{display:grid;place-items:center;width:34px;height:34px;padding:0;background:transparent;border-color:transparent}
+.ws-position{margin:0;font-size:.8rem;color:var(--muted);white-space:nowrap}
+.ws-actions{display:flex;gap:.4rem;margin:0 auto}
+.ws-run,.ws-submit{display:flex;align-items:center;gap:.35rem;padding:.45rem 1rem}
+.ws-run svg{width:13px;height:13px;fill:currentColor;stroke:none}
+.ws-submit{background:#1a7f37;border-color:#1a7f37;color:#fff}
+.ws-submit:hover{background:#116329;border-color:#116329}
+@media(prefers-color-scheme:dark){.ws-submit{background:#238636;border-color:#2ea043}}
+.ws-layout .ws-layout-split{transition:transform .15s}
+.ws-stacked .ws-layout svg{transform:rotate(90deg)}
+
+/* Panels */
+.ws-main{flex:1;min-height:0;display:grid;grid-template-columns:var(--ws-split) var(--ws-gap) minmax(0,1fr);padding:0 var(--ws-gap) var(--ws-gap)}
+.ws-stacked .ws-main{grid-template-columns:minmax(0,1fr);grid-template-rows:var(--ws-split) var(--ws-gap) minmax(0,1fr)}
+.ws-right{display:grid;grid-template-rows:var(--ws-code) var(--ws-gap) minmax(0,1fr);min-height:0;min-width:0}
+.ws-pane{display:flex;flex-direction:column;min-height:0;min-width:0;background:var(--raised);border:1px solid var(--rule);border-radius:10px;overflow:hidden}
+.ws-handle{position:relative;cursor:col-resize;touch-action:none}
+.ws-handle::after{content:"";position:absolute;inset:30% 3px;border-radius:2px;transition:background .15s}
+.ws-handle:hover::after,.ws-handle:focus-visible::after,.ws-dragging .ws-handle::after{background:var(--focus)}
+.ws-handle-code,.ws-stacked .ws-handle-main{cursor:row-resize}
+.ws-handle-code::after,.ws-stacked .ws-handle-main::after{inset:3px 35%}
+.ws-dragging{user-select:none;cursor:grabbing}
+.ws-dragging iframe,.ws-dragging textarea{pointer-events:none}
+
+/* Tab strips */
+.ws-tabs{display:flex;align-items:center;gap:.15rem;flex-shrink:0;height:40px;padding:0 .4rem;border-bottom:1px solid var(--rule);background:color-mix(in srgb,var(--wash) 55%,var(--raised))}
+.ws-tabs [role=tab]{background:none;border:0;border-radius:6px;padding:.35rem .65rem;color:var(--muted);white-space:nowrap}
+.ws-lesson-link,.ws-saved,.ws-python{white-space:nowrap}
+.ws-tabs [role=tab]:hover{color:var(--ink);background:var(--wash)}
+.ws-tabs [role=tab][aria-selected=true]{color:var(--ink);font-weight:600;box-shadow:inset 0 -2px 0 var(--mark);border-radius:6px 6px 0 0}
+.ws-lesson-link,.ws-saved,.ws-python{margin-left:auto;font-size:.78rem;color:var(--muted)}
+.ws-lesson-link{padding:0 .5rem}
+.ws-saved+.ws-small{margin-left:.4rem}
+.ws-small{padding:.2rem .55rem;font-size:.78rem!important}
+.ws-scroll{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain}
+
+/* Problem side */
+.ws-left .ws-scroll{padding:1.1rem 1.4rem 2rem}
+.ws-meta{display:flex;align-items:center;flex-wrap:wrap;gap:.45rem;margin:0 0 .5rem;font-size:.8rem}
+.ws-meta a{margin-left:auto;color:var(--muted)}
+.ws-badge{font-weight:600;font-size:.75rem;padding:.1rem .6rem;border-radius:999px;color:var(--diff);background:color-mix(in srgb,var(--diff) 12%,transparent)}
+.ws-topic{padding:.1rem .6rem;border-radius:999px;font-size:.75rem!important;background:var(--wash);border:1px solid var(--rule)}
+.ws-topic:disabled{opacity:1;cursor:default;color:var(--ink)}
+.ws-left h1{margin:0 0 .9rem;font:650 1.45rem/1.25 var(--sans);letter-spacing:-.015em;color:var(--ink)}
+.ws-prose{font-size:1rem;line-height:1.65;max-width:none}
+.ws-prose h2{font-size:1.25rem;margin:2rem 0 .6rem}
+.ws-prose h4{font-size:1.05rem;margin:1.6rem 0 .5rem}
+.ws-prose pre{font-size:.82rem}
+.ws-hints{margin-top:1.75rem;padding-top:1rem;border-top:1px solid var(--rule)}
+.ws-hints h2{font:600 .95rem var(--sans);color:var(--ink);margin:0 0 .6rem}
+.ws-hint{margin:0 0 .75rem;padding:.7rem .9rem;border-radius:8px;background:var(--mark-soft);color:var(--body);font-size:.95rem;line-height:1.6}
+.ws-hint p{margin:.2rem 0}
+.ws-hint-label{font:600 .75rem var(--sans)!important;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.ws-hint-button{background:var(--wash)}
+
+/* Difficulty colours */
+.ws-easy{--diff:#1a7f37}.ws-medium{--diff:#9a6700}.ws-hard{--diff:#cf222e}
+@media(prefers-color-scheme:dark){.ws-easy{--diff:#56d364}.ws-medium{--diff:#e3b341}.ws-hard{--diff:#ff7b72}}
+
+/* Editor */
+.ws-editor{flex:1;min-height:0;display:flex}
+.ed{position:relative;flex:1;min-height:0;display:flex;font:var(--ed-font)/var(--ed-line) var(--mono);font-variant-ligatures:none;tab-size:4}
+.ed pre,.ed textarea{margin:0;font:inherit;letter-spacing:0;white-space:pre;tab-size:4}
+.ed-gutter{flex-shrink:0;overflow:hidden;padding:var(--ed-pad) .8rem var(--ed-pad) 1rem;text-align:right;color:var(--faint);user-select:none;border-right:1px solid var(--rule);min-width:3.2rem}
+.ed-scroll{flex:1;min-width:0;overflow:auto}
+.ed-layers{position:relative;display:grid;min-height:100%;min-width:max-content}
+.ed-highlight,.ed-input{grid-area:1/1;padding:var(--ed-pad) 1.2rem var(--ed-pad) 1rem;border:0;background:none}
+.ed-highlight{color:var(--ink);pointer-events:none}
+.ed-input{resize:none;overflow:hidden;color:transparent;caret-color:var(--ink);outline:none;width:100%;height:100%}
+.ed-input::selection{background:color-mix(in srgb,var(--link) 28%,transparent);color:transparent}
+.ed-readonly .ed-input{caret-color:transparent}
+.ed-mark{position:absolute;left:0;right:0;height:var(--ed-line);background:color-mix(in srgb,#cf222e 14%,transparent);pointer-events:none}
+
+/* Console */
+.ws-console-body{padding:.8rem 1rem 1.2rem}
+.ws-case-tabs{display:flex;flex-wrap:wrap;gap:.35rem;margin-bottom:.6rem}
+.ws-case-tabs button{padding:.25rem .7rem;background:color-mix(in srgb,var(--ink) 5%,var(--raised));border-color:transparent}
+.ws-case-tabs button[aria-pressed=true]{background:var(--raised);border-color:var(--rule-strong);color:var(--ink)}
+.ws-label{margin:.7rem 0 .25rem;font:600 .75rem var(--sans);color:var(--muted)}
+.ws-value{margin:0;padding:.5rem .7rem;border-radius:7px;background:color-mix(in srgb,var(--ink) 5%,var(--raised));font:.82rem/1.5 var(--mono);color:var(--ink);white-space:pre-wrap;word-break:break-word}
+.ws-value code{font:inherit;background:none;padding:0}
+.ws-error{color:var(--error);background:var(--error-bg)}
+.ws-verdict{display:flex;align-items:baseline;flex-wrap:wrap;gap:.3rem 1rem;margin:0 0 .8rem}
+.ws-verdict strong{font:650 1.15rem var(--sans)}
+.ws-verdict span{font-size:.82rem;color:var(--muted)}
+.ws-good strong{color:#1a7f37}.ws-bad strong{color:var(--error)}
+@media(prefers-color-scheme:dark){.ws-good strong{color:#56d364}}
+.ws-row{border-top:1px solid var(--rule);padding:.45rem 0}
+.ws-row summary{cursor:pointer;font-weight:600;font-size:.88rem;color:var(--ink)}
+.ws-mark{display:inline-block;width:1.3rem}
+.ws-pass .ws-mark{color:#1a7f37}.ws-fail .ws-mark{color:var(--error)}
+
+/* Problem list drawer */
+.ws-drawer{position:fixed;z-index:40;top:0;left:0;bottom:0;width:min(26rem,92vw);display:flex;flex-direction:column;background:var(--raised);border-right:1px solid var(--rule-strong);box-shadow:12px 0 40px -20px rgba(20,24,60,.4)}
+.ws-scrim{position:fixed;z-index:39;inset:0;border:0;border-radius:0;background:rgba(15,18,38,.25);padding:0}
+.ws-drawer-head{padding:1rem;border-bottom:1px solid var(--rule)}
+.ws-drawer-head input{width:100%;padding:.55rem .75rem;border:1px solid var(--rule-strong);border-radius:7px;background:var(--paper);color:var(--ink);font-size:.9rem}
+.ws-filters{display:flex;gap:.3rem;margin-top:.6rem}
+.ws-filters button{padding:.25rem .65rem;border-radius:999px;background:var(--wash);border-color:transparent}
+.ws-filters button[aria-pressed=true]{background:var(--ink);color:var(--paper)}
+.ws-progress{margin:.6rem 0 0;font-size:.8rem;color:var(--muted)}
+.ws-problems{list-style:none;margin:0;padding:.4rem;overflow:auto;flex:1}
+.ws-problems a{display:grid;grid-template-columns:1.2rem 2.6rem 1fr auto;align-items:center;gap:.3rem;padding:.5rem .6rem;border-radius:6px;color:var(--body);text-decoration:none;font-size:.88rem}
+.ws-problems a:hover{background:var(--wash)}
+.ws-problems a[aria-current]{background:var(--mark-soft);color:var(--ink);font-weight:600}
+.ws-num{font:.78rem var(--mono);color:var(--faint)}
+.ws-diff{font-size:.75rem;color:var(--diff)}
+.ws-state{font-weight:700}.ws-solved{color:#1a7f37}.ws-tried{color:#9a6700}
+.ws-problems .ws-muted{padding:1rem}
+.ws-noscript{padding:2rem}
+
+/* Narrow screens: one column, the page scrolls instead of the panels. */
+@media(max-width:860px){
+  .ws{height:auto;overflow:visible}
+  .ws-top{flex-wrap:wrap;height:auto;padding-top:.5rem;padding-bottom:.5rem}
+  .ws-position,.ws-layout,.ws-list-button span,.ws-python{display:none}
+  .ws-tabs{overflow-x:auto;scrollbar-width:none}
+  .ws-actions{margin:0 0 0 auto}
+  .ws-main,.ws-stacked .ws-main{display:flex;flex-direction:column;gap:var(--ws-gap)}
+  .ws-handle{display:none}
+  .ws-right{display:flex;flex-direction:column;gap:var(--ws-gap)}
+  .ws-left .ws-scroll{max-height:none}
+  .ws-code{height:60vh}
+  .ws-console .ws-scroll{max-height:none}
+}

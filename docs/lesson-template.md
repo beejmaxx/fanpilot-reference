@@ -11,7 +11,14 @@ Use the existing lessons in `content/lessons/worked/` as models. A lesson teache
 
 ## Sections
 
-The derivation is the lesson, so steps 1–6 are always visible. Use these headings, numbered: the [solution browser](/solutions/) reads `The problem` and the first code block under `The solution and a trace`.
+The derivation is the lesson, so steps 1–6 are always visible. Use these headings, numbered: the [solution browser](/solutions/) and the [practice workspace](/practice/) read them.
+
+The practice workspace (`scripts/practice.py`) turns the lesson into a runnable problem, so keep these shapes:
+
+- The first code block under `The solution and a trace` holds the solution (`class Solution` or one function), then a line such as `solve = Solution().methodName`, then the example asserts. Each `assert solve(...) == expected` becomes a test case; the starter code is the solution with its bodies replaced by `pass`.
+- Helpers the tests need (`build`, `values`, `ListNode`) go in an earlier block or in the solution block; never define them after it.
+- Submit runs the code under `#### Check it against the baseline`, so that block must call the solution, not a copy of it.
+- After adding a lesson, run `npm run test:practice` against the served site: it checks that the workspace accepts the lesson's solution and rejects the empty starter.
 
 1. **The problem.** State it in your own words (do not copy the platform statement), then link it. Give a table of three or more examples with explanations, including an empty or no-answer case. Point out the words that matter ("contiguous", "at least", "positive").
 2. **A correct baseline.** Readable Python with assertions on the examples. Give its cost, then name **the bottleneck**: the specific repeated work or unnecessary candidates.

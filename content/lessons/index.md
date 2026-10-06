@@ -16,7 +16,7 @@ Use the [transfer exercises](/patterns/transfer-exercises/) to tell remembering 
 
 ## What is here today
 
-The [patterns guide](/patterns/) has 32 chapters, 125 linked practice problems, and eight Rust examples. [Worked lessons](/worked/) take one problem from baseline to proof in Python; the first pair contrasts a [sliding window](/worked/shortest-subarray-reaching-a-sum/) with [prefix sums](/worked/subarrays-summing-to-k/) on two problems that look almost identical. To skim code instead, [browse all the solutions](/solutions/) one screen at a time. The [problem library](/problems/) shows which of 4,072 problems the guide discusses.
+The [patterns guide](/patterns/) has 32 chapters, 125 linked practice problems, and eight Rust examples. [Worked lessons](/worked/) take one problem from baseline to proof in Python; the first pair contrasts a [sliding window](/worked/shortest-subarray-reaching-a-sum/) with [prefix sums](/worked/subarrays-summing-to-k/) on two problems that look almost identical. To try them yourself, the [practice workspace](/practice/) runs your Python against each lesson's tests, right in the browser. The [problem library](/problems/) shows which of 4,072 problems the guide discusses.
 
 System design starts with two interactive labs: an [LRU cache](/system-design/lru-cache/), which combines fast lookup with recency order, and an [in-memory file system](/system-design/file-system/), which models paths as a hierarchy. This is a growing reference, not a finished one.
 

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Practice · Fanpilot</title>
+  <meta name="description" content="Solve the worked lessons' problems in Python, in your browser: examples, random tests against a baseline, hints, and the full walkthrough."><meta name="color-scheme" content="light dark">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/practice.css">
+  <script type="module" src="/practice.mjs"></script>
+</head>
+<body class="ws">
+  <header class="ws-top">
+    <a class="brand" href="/" aria-label="Fanpilot home"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect class="brand-window" x="9" y="7" width="14" height="18" rx="2"></rect><path d="M6 5v22M26 5v22" class="brand-bounds"></path></svg></a>
+    <button type="button" class="ws-list-button" id="ws-list-button" aria-expanded="false" aria-controls="ws-drawer"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 5h14M3 10h14M3 15h14"/></svg><span>Problems</span></button>
+    <div class="ws-flip">
+      <button type="button" class="ws-icon" id="ws-prev" aria-label="Previous problem" title="Previous problem (←)"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m12 4-6 6 6 6"/></svg></button>
+      <button type="button" class="ws-icon" id="ws-next" aria-label="Next problem" title="Next problem (→)"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="m8 4 6 6-6 6"/></svg></button>
+      <button type="button" class="ws-icon" id="ws-random" aria-label="Random problem" title="Random problem"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M3 6h3l8 8h3M3 14h3l2.5-2.5M11.5 8.5 14 6h3M15 4l2 2-2 2M15 12l2 2-2 2"/></svg></button>
+    </div>
+    <p class="ws-position" id="ws-position"></p>
+    <div class="ws-actions">
+      <button type="button" class="ws-run" id="ws-run" title="Run the examples (⌘/Ctrl + Enter)"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M6 4l10 6-10 6z"/></svg>Run</button>
+      <button type="button" class="ws-submit" id="ws-submit" title="Examples plus random tests against the baseline (⌘/Ctrl + Shift + Enter)">Submit</button>
+    </div>
+    <button type="button" class="ws-icon ws-layout" id="ws-layout" aria-label="Stack panels" title="Switch between side by side and stacked"><svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="4" width="14" height="12" rx="1.5"/><path class="ws-layout-split" d="M10 4v12"/></svg></button>
+  </header>
+
+  <aside class="ws-drawer" id="ws-drawer" hidden aria-label="Problem list">
+    <div class="ws-drawer-head">
+      <input type="search" id="ws-search" placeholder="Search by name, number, or technique" aria-label="Search problems" autocomplete="off">
+      <div class="ws-filters" role="group" aria-label="Difficulty">
+        <button type="button" data-filter="all" aria-pressed="true">All</button><button type="button" data-filter="Easy" aria-pressed="false">Easy</button><button type="button" data-filter="Medium" aria-pressed="false">Medium</button><button type="button" data-filter="Hard" aria-pressed="false">Hard</button>
+      </div>
+      <p class="ws-progress" id="ws-progress"></p>
+    </div>
+    <ol class="ws-problems" id="ws-problems"></ol>
+  </aside>
+  <button type="button" class="ws-scrim" id="ws-scrim" hidden tabindex="-1" aria-label="Close the problem list"></button>
+
+  <main class="ws-main" id="ws-main">
+    <section class="ws-pane ws-left" aria-label="Problem">
+      <div class="ws-tabs" role="tablist">
+        <button type="button" role="tab" data-tab="problem" aria-selected="true">Problem</button>
+        <button type="button" role="tab" data-tab="walkthrough" aria-selected="false">Walkthrough</button>
+        <button type="button" role="tab" data-tab="further" aria-selected="false">Going further</button>
+        <a class="ws-lesson-link" id="ws-lesson-link" href="/worked/">Full lesson ↗</a>
+      </div>
+      <div class="ws-scroll" id="ws-left-body" tabindex="0">
+        <div data-panel="problem">
+          <p class="ws-meta" id="ws-meta"></p>
+          <h1 id="ws-title">Loading…</h1>
+          <div class="prose ws-prose" id="ws-problem"></div>
+          <div class="ws-hints" id="ws-hints"></div>
+        </div>
+        <div data-panel="walkthrough" hidden><div class="prose ws-prose" id="ws-walkthrough"></div></div>
+        <div data-panel="further" hidden><div class="prose ws-prose" id="ws-further"></div></div>
+      </div>
+    </section>
+
+    <div class="ws-handle ws-handle-main" id="ws-handle-main" role="separator" aria-orientation="vertical" aria-label="Resize panels" tabindex="0"></div>
+
+    <div class="ws-right">
+      <section class="ws-pane ws-code" aria-label="Code">
+        <div class="ws-tabs" role="tablist">
+          <button type="button" role="tab" data-code="mine" aria-selected="true">Your code</button>
+          <button type="button" role="tab" data-code="solution" aria-selected="false">Solution</button>
+          <span class="ws-saved" id="ws-saved" aria-live="polite"></span>
+          <button type="button" class="ws-small" id="ws-reset" title="Replace your code with the starter">Reset</button>
+          <button type="button" class="ws-small" id="ws-copy">Copy</button>
+        </div>
+        <div class="ws-editor" id="ws-editor"></div>
+      </section>
+
+      <div class="ws-handle ws-handle-code" id="ws-handle-code" role="separator" aria-orientation="horizontal" aria-label="Resize code and tests" tabindex="0"></div>
+
+      <section class="ws-pane ws-console" aria-label="Tests">
+        <div class="ws-tabs" role="tablist">
+          <button type="button" role="tab" data-console="cases" aria-selected="true">Test cases</button>
+          <button type="button" role="tab" data-console="result" aria-selected="false">Result</button>
+          <span class="ws-python" id="ws-python">Python loads when you first run</span>
+        </div>
+        <div class="ws-scroll ws-console-body">
+          <div data-console-panel="cases"><div class="ws-case-tabs" id="ws-case-tabs"></div><div id="ws-case"></div></div>
+          <div data-console-panel="result" hidden><div id="ws-result"><p class="ws-muted">Run your code to see results here.</p></div></div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <noscript><p class="ws-noscript">The practice workspace needs JavaScript. <a href="/worked/">Read the worked lessons</a> for the same problems, walkthroughs, and code.</p></noscript>
+</body>
+</html>

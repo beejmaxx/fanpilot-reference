@@ -16,7 +16,7 @@ Each lesson follows the same order, so you can compare techniques side by side:
 
 Steps 1 to 6 are always on the page. The related problems, a random check against the baseline, and a reconstruction exercise sit in a collapsed section at the end.
 
-To skim the code instead, use the [solution browser](/solutions/): one problem per screen, statement beside code, flipped with the arrow keys.
+To solve the problems yourself, open the [practice workspace](/practice/): the problem, an editor, and tests side by side, with hints and the walkthrough a click away. Your Python runs in the browser. To skim code only, the [solution browser](/solutions/) shows one solution per screen.
 
 ## The lessons
 
