@@ -1,0 +1,23 @@
+{
+  "checked_at_utc": "2026-10-06T06:06:08.157153+00:00",
+  "commands": [
+    "/Applications/Xcode.app/Contents/Developer/usr/bin/python3 scripts/build.py",
+    "/Applications/Xcode.app/Contents/Developer/usr/bin/python3 scripts/check-lessons.py",
+    "npm test",
+    "npm run test:site"
+  ],
+  "source_hashes": {
+    "1": "eaf7045484e0b1db337b5f35ea9c9d188a7c9b31d88566b2242f22c113c146bd",
+    "49": "84bcfb5cbf9458fb92620e92eb62a9d204fded42da4c69f4a69fe94457f2d142",
+    "167": "140ba75bcc1150e6cc11a7895badff90919a5006aa0f6d48cafe966838b24004",
+    "35": "1e76879eb635d7c18449aaf06549b4940ae76cd1e781d4daadeabf91ee9e867d",
+    "209": "d692dd5b19f98f421aed2fd509a07db47a1b0434fb026bf1d09743ade8995d07",
+    "560": "481829c876bf872ca76858c4348c2d5e2eecd6916ac5c51c573fe5e243cf77eb",
+    "739": "a2ee1018a4f369d779e3958b1e4073f583b85e26201021ee961885f3c26230b6",
+    "239": "f8ba169be6c0dff1939cddc6e25f4eed5e3964ecb6465cb0ca8088b898983a4f",
+    "875": "2cddd28e2e35a3b0cf91e79f6a3d88e6081a6220277bed9f69afa6d999ce9905",
+    "20": "335c79c5a7c2b829587996f710f4d43c2f79a1f61c014eb5a1d740c66538e04c",
+    "215": "66202111cd02a36a3c19fe40deed099b679e4e941ca8c1702f4f973a4735cd78",
+    "23": "ca86ce00bbd58d1d2ae1de27de10660f3aaed77eb5d95ea6b5cb7ddf66aab138"
+  }
+}

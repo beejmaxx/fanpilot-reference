@@ -1,0 +1,41 @@
+{
+  "batch_size": 10,
+  "scope": "Every entry in data/problems.json. Python for Algorithms/Pandas, SQL for Database, JavaScript/TypeScript for language-specific problems.",
+  "batches": [
+    {
+      "name": "Pilot review",
+      "status": "awaiting_review",
+      "problem_ids": [
+        1,
+        49,
+        167,
+        35,
+        209,
+        560,
+        739,
+        239,
+        875,
+        20,
+        215,
+        23
+      ]
+    },
+    {
+      "name": "Foundations and transfer",
+      "status": "proposed",
+      "problem_ids": [
+        242,
+        3,
+        283,
+        53,
+        56,
+        206,
+        104,
+        200,
+        198,
+        42
+      ],
+      "reason": "Readable Python across hashing, windows, scans, intervals, linked lists, trees, grids and DP; related to the pilot where possible. Includes Trapping Rain Water as a Hard lesson to check depth and presentation."
+    }
+  ]
+}
