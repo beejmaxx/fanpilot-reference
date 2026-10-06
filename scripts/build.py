@@ -52,6 +52,7 @@ EXTRA = [('index', '/', 'Start here', 'hub'), ('patterns', '/patterns/', 'LeetCo
          ('worked/maximum-depth-of-binary-tree', '/worked/maximum-depth-of-binary-tree/', 'Maximum Depth of Binary Tree · Easy', 'Worked lessons'),
          ('worked/number-of-islands', '/worked/number-of-islands/', 'Number of Islands · Medium', 'Worked lessons'),
          ('worked/house-robber', '/worked/house-robber/', 'House Robber · Medium', 'Worked lessons'),
+         ('worked/trapping-rain-water', '/worked/trapping-rain-water/', 'Trapping Rain Water · Hard', 'Worked lessons'),
          ('lru-cache', '/system-design/lru-cache/', 'LRU cache', 'System design'),
          ('file-system', '/system-design/file-system/', 'File system', 'System design'),
          ('research', '/research/', 'Research & sources', 'The reference'),
