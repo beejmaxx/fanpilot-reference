@@ -44,6 +44,7 @@ EXTRA = [('index', '/', 'Start here', 'hub'), ('patterns', '/patterns/', 'LeetCo
          ('worked/kth-largest-element', '/worked/kth-largest-element/', 'Kth Largest Element · Medium', 'Worked lessons'),
          ('worked/merge-k-sorted-lists', '/worked/merge-k-sorted-lists/', 'Merge k Sorted Lists · Hard', 'Worked lessons'),
          ('worked/valid-anagram', '/worked/valid-anagram/', 'Valid Anagram · Easy', 'Worked lessons'),
+         ('worked/longest-substring-without-repeating-characters', '/worked/longest-substring-without-repeating-characters/', 'Longest Substring Without Repeating Characters · Medium', 'Worked lessons'),
          ('lru-cache', '/system-design/lru-cache/', 'LRU cache', 'System design'),
          ('file-system', '/system-design/file-system/', 'File system', 'System design'),
          ('research', '/research/', 'Research & sources', 'The reference'),
