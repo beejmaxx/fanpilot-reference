@@ -50,6 +50,7 @@ EXTRA = [('index', '/', 'Start here', 'hub'), ('patterns', '/patterns/', 'LeetCo
          ('worked/merge-intervals', '/worked/merge-intervals/', 'Merge Intervals · Medium', 'Worked lessons'),
          ('worked/reverse-linked-list', '/worked/reverse-linked-list/', 'Reverse Linked List · Easy', 'Worked lessons'),
          ('worked/maximum-depth-of-binary-tree', '/worked/maximum-depth-of-binary-tree/', 'Maximum Depth of Binary Tree · Easy', 'Worked lessons'),
+         ('worked/number-of-islands', '/worked/number-of-islands/', 'Number of Islands · Medium', 'Worked lessons'),
          ('lru-cache', '/system-design/lru-cache/', 'LRU cache', 'System design'),
          ('file-system', '/system-design/file-system/', 'File system', 'System design'),
          ('research', '/research/', 'Research & sources', 'The reference'),
