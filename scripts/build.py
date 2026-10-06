@@ -48,6 +48,7 @@ EXTRA = [('index', '/', 'Start here', 'hub'), ('patterns', '/patterns/', 'LeetCo
          ('worked/move-zeroes', '/worked/move-zeroes/', 'Move Zeroes · Easy', 'Worked lessons'),
          ('worked/maximum-subarray', '/worked/maximum-subarray/', 'Maximum Subarray · Medium', 'Worked lessons'),
          ('worked/merge-intervals', '/worked/merge-intervals/', 'Merge Intervals · Medium', 'Worked lessons'),
+         ('worked/reverse-linked-list', '/worked/reverse-linked-list/', 'Reverse Linked List · Easy', 'Worked lessons'),
          ('lru-cache', '/system-design/lru-cache/', 'LRU cache', 'System design'),
          ('file-system', '/system-design/file-system/', 'File system', 'System design'),
          ('research', '/research/', 'Research & sources', 'The reference'),
