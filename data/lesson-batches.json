@@ -44,10 +44,11 @@
       "problem_ids": [
         141,
         110,
-        543
+        543,
+        98
       ],
       "reason": "Ten-problem content handoff: identity, subtree summaries, bounds, graph ordering, connectivity, shortest paths, subsets and DP.",
-      "lesson_count": 3
+      "lesson_count": 4
     }
   ]
 }

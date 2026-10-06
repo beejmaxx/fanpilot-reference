@@ -3,8 +3,8 @@
   "catalog_sha256": "a6e9a6dd7499a7becea34842799e8db5573bac3cb21fe8493f77c7731eef86c2",
   "counts": {
     "catalog": 4072,
-    "written": 25,
-    "not_written": 4047,
+    "written": 26,
+    "not_written": 4046,
     "reviewed": 0
   },
   "categories": {
@@ -858,8 +858,14 @@
       "slug": "validate-binary-search-tree",
       "title": "Validate Binary Search Tree",
       "category": "Algorithms",
-      "status": "not_written",
-      "language_policy": "python"
+      "status": "written",
+      "language_policy": "python",
+      "lesson_url": "/worked/validate-binary-search-tree/",
+      "lesson_source": "content/lessons/worked/validate-binary-search-tree.md",
+      "source_sha256": "a3e066ae55719d6800e21a2108828f244e53e4c781e1b16c8f264aab37165a69",
+      "difficulty": "Medium",
+      "review_status": "pending",
+      "verification_status": "not_recorded"
     },
     {
       "id": 99,
