@@ -39,6 +39,7 @@ EXTRA = [('index', '/', 'Start here', 'hub'), ('patterns', '/patterns/', 'LeetCo
           'Subarrays summing to k', 'Worked lessons'),
          ('worked/daily-temperatures', '/worked/daily-temperatures/', 'Daily Temperatures · Medium', 'Worked lessons'),
          ('worked/sliding-window-maximum', '/worked/sliding-window-maximum/', 'Sliding Window Maximum · Hard', 'Worked lessons'),
+         ('worked/koko-eating-bananas', '/worked/koko-eating-bananas/', 'Koko Eating Bananas · Medium', 'Worked lessons'),
          ('lru-cache', '/system-design/lru-cache/', 'LRU cache', 'System design'),
          ('file-system', '/system-design/file-system/', 'File system', 'System design'),
          ('research', '/research/', 'Research & sources', 'The reference'),
