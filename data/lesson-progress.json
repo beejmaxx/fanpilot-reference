@@ -3,8 +3,8 @@
   "catalog_sha256": "a6e9a6dd7499a7becea34842799e8db5573bac3cb21fe8493f77c7731eef86c2",
   "counts": {
     "catalog": 4072,
-    "written": 24,
-    "not_written": 4048,
+    "written": 25,
+    "not_written": 4047,
     "reviewed": 0
   },
   "categories": {
@@ -4500,8 +4500,14 @@
       "slug": "diameter-of-binary-tree",
       "title": "Diameter of Binary Tree",
       "category": "Algorithms",
-      "status": "not_written",
-      "language_policy": "python"
+      "status": "written",
+      "language_policy": "python",
+      "lesson_url": "/worked/diameter-of-binary-tree/",
+      "lesson_source": "content/lessons/worked/diameter-of-binary-tree.md",
+      "source_sha256": "988ee2f0a997429562d2a634de67778cb8d5e2c3ba63997b9500ebd0937d411f",
+      "difficulty": "Easy",
+      "review_status": "pending",
+      "verification_status": "not_recorded"
     },
     {
       "id": 544,
