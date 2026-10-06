@@ -3,8 +3,8 @@
   "catalog_sha256": "a6e9a6dd7499a7becea34842799e8db5573bac3cb21fe8493f77c7731eef86c2",
   "counts": {
     "catalog": 4072,
-    "written": 27,
-    "not_written": 4045,
+    "written": 28,
+    "not_written": 4044,
     "reviewed": 0
   },
   "categories": {
@@ -5653,8 +5653,14 @@
       "slug": "redundant-connection",
       "title": "Redundant Connection",
       "category": "Algorithms",
-      "status": "not_written",
-      "language_policy": "python"
+      "status": "written",
+      "language_policy": "python",
+      "lesson_url": "/worked/redundant-connection/",
+      "lesson_source": "content/lessons/worked/redundant-connection.md",
+      "source_sha256": "e8e60d499b7b0c1087097e2a439ee9af56bb6d5e68fea2688a59e3ec13b8e6cc",
+      "difficulty": "Medium",
+      "review_status": "pending",
+      "verification_status": "not_recorded"
     },
     {
       "id": 685,
