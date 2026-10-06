@@ -5,7 +5,7 @@
   const pages=JSON.parse(document.getElementById('chapter-data').textContent);
   const page=pages.find(p=>p.id===document.body.dataset.page);
   const $=id=>document.getElementById(id);
-  const search=$('book-search'), navigation=$('chapter-navigation'), results=$('search-results');
+  const search=$('book-search'), panel=$('search-panel'), results=$('search-results');
   const narrow=window.matchMedia('(max-width: 800px)');
   function toggleMenu(open) {
     document.body.classList.toggle('menu-open',open);
@@ -34,7 +34,7 @@
   }
   function runSearch() {
     const query=search.value.trim();const terms=query.toLowerCase().split(/\s+/).filter(Boolean);
-    navigation.hidden=Boolean(query);results.hidden=!query;results.replaceChildren();
+    panel.hidden=!query;results.replaceChildren();
     if(!query){$('search-status').textContent='';return;}
     const found=pages.filter(p=>terms.every(t=>(p.title+' '+p.text).toLowerCase().includes(t)));
     found.sort((a,b)=>Number(b.title.toLowerCase().includes(query.toLowerCase()))-Number(a.title.toLowerCase().includes(query.toLowerCase())));
@@ -49,11 +49,19 @@
     }
   }
   search.addEventListener('input',runSearch);
+  search.addEventListener('focus',()=>{if(search.value.trim())panel.hidden=false;});
+  document.addEventListener('click',event=>{if(!$('search').contains(event.target))panel.hidden=true;});
+  const current=document.querySelector('.rail [aria-current="page"]');
+  if(current){
+    const rail=$('chapter-navigation'), item=current.getBoundingClientRect(), box=rail.getBoundingClientRect();
+    if(item.bottom>box.bottom-40)rail.scrollTop+=item.top-box.top-box.height/3;
+  }
   document.addEventListener('keydown',event=>{
     const editing=event.target instanceof HTMLElement&&(event.target.matches('input,textarea,select')||event.target.isContentEditable);
-    if(event.key==='/'&&!editing&&!event.ctrlKey&&!event.metaKey&&!event.altKey){event.preventDefault();if(narrow.matches)toggleMenu(true);search.focus();}
+    if(event.key==='/'&&!editing&&!event.ctrlKey&&!event.metaKey&&!event.altKey){event.preventDefault();search.focus();}
     if(event.key==='Escape'){
       if(document.activeElement===search&&search.value){search.value='';runSearch();}
+      else if(!panel.hidden){panel.hidden=true;}
       else{toggleMenu(false);if(narrow.matches)$('menu-button').focus();}
     }
   });

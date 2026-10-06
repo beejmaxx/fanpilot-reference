@@ -1,0 +1,8 @@
+<figure class="trace" id="hero-trace" aria-label="Trace of a sliding window finding the shortest run of values that sums to at least 7">
+  <div class="trace-top"><p class="trace-question">Shortest run of <code>[2, 3, 1, 2, 4, 3]</code> that sums to at least 7</p><div class="trace-buttons"><button type="button" id="trace-step">Step</button><button type="button" id="trace-play">Replay</button></div></div>
+  <ol class="trace-cells" id="trace-cells">
+    <li><span>2</span></li><li><span>3</span></li><li><span>1</span></li><li><span>2</span></li><li class="in left"><span>4</span></li><li class="in right"><span>3</span></li>
+  </ol>
+  <div class="trace-readout"><p id="trace-say" aria-live="polite">Done. The shortest run is [4, 3], length 2.</p><p class="trace-tally"><span>Sum <strong id="trace-sum">7</strong></span><span>Best <strong id="trace-best">2</strong></span></p></div>
+  <figcaption>Neither end of the window ever moves left, so every candidate is checked in one pass. <a href="/worked/shortest-subarray-reaching-a-sum/">Why skipping the rest is safe</a></figcaption>
+</figure>

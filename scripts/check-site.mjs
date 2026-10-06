@@ -114,6 +114,30 @@ try {
   assert.match(await page.locator('#fs-tree').innerText(),/15 B/);
   await page.locator('#filesystem-lab').screenshot({path:'.qa/filesystem-desktop.png'});
 
+  await page.goto(new URL('/problems/',base).href);
+  await page.waitForFunction(()=>document.querySelectorAll('#problem-rows tr').length===100);
+  assert.match(await page.locator('#problem-status').innerText(),/Showing 100 of [\d,]+ matching/);
+  await page.locator('#problem-more').click();
+  assert.equal(await page.locator('#problem-rows tr').count(),200);
+  await page.locator('#problem-query').fill('560');
+  assert.equal(await page.locator('#problem-rows tr').count(),1);
+  assert.match(await page.locator('#problem-rows tr').innerText(),/Subarray Sum Equals K/);
+  assert.equal(await page.locator('#problem-rows tr a.guide-chip').filter({hasText:'Worked lesson'}).count(),1);
+  await page.locator('#problem-query').fill('');
+  await page.locator('#problem-taught').check();
+  const taught = await page.locator('#problem-rows tr').count();
+  assert.ok(taught>50 && taught<=100, `Taught filter shows ${taught}`);
+  await page.locator('#problem-query').fill('zzyzx');
+  assert.match(await page.locator('#problem-status').innerText(),/No problems match/);
+  await page.setViewportSize({width:375,height:812});
+  await page.locator('#problem-query').fill('two sum');
+  await page.screenshot({path:'.qa/problems-mobile.png',fullPage:false});
+  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth), false, 'Problem library mobile overflow');
+  await page.setViewportSize({width:1440,height:1000});
+  await page.screenshot({path:'.qa/problems-desktop.png'});
+  await page.goto(new URL('/worked/subarrays-summing-to-k/',base).href);
+  await page.screenshot({path:'.qa/worked-desktop.png',fullPage:true});
+
   const noJs = await browser.newContext({javaScriptEnabled:false,viewport:{width:375,height:812}});
   const reader = await noJs.newPage();
   await reader.goto(new URL('/patterns/heaps-and-the-candidate-frontier/',base).href);
@@ -141,5 +165,5 @@ try {
     for(let i=errors.length-1;i>=0;i--) if(errors[i]==='Failed to load resource: the server responded with a status of 404 ()') errors.splice(i,1);
   }
   assert.deepEqual(errors,[],'Browser errors');
-  console.log(`Verified ${manifest.pages.length} routes, ${links.size} internal link targets, desktop/mobile layouts, search, both labs, and reading without JavaScript.`);
+  console.log(`Verified ${manifest.pages.length} routes, ${links.size} internal link targets, desktop/mobile layouts, search, both labs, the problem library, and reading without JavaScript.`);
 } finally { await browser.close(); }

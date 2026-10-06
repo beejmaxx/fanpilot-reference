@@ -20,8 +20,8 @@ Edit Markdown under `content/`, assets under `src/`, or the build under `scripts
 
 Run the applicable checks from the README. Rust-example changes need `npm run test:patterns`. Lab behavior changes need `npm test`, with an independent reference or a counterexample when appropriate. Navigation, layout, and lab-control changes need the browser checks and visual inspection of the affected desktop/mobile screenshots. A prose correction needs a build and a check of the affected page and links.
 
-New lesson routes are registered in `EXTRA` in `scripts/build.py`. Numbered pattern chapters are derived from the manuscript headings; changing a heading changes its URL. Preserve or deliberately redirect previously published URLs when renaming a page.
+New lesson routes are registered in `EXTRA` in `scripts/build.py` with a source key, URL, navigation label, and group. Worked lessons live in `content/lessons/worked/`, follow [the lesson template](docs/lesson-template.md), and start with a subtitle line such as `*Worked lesson · Sliding window · LC 209*`; the problem library links that problem to the lesson. Run `npm run test:lessons` after changing any Python block. Numbered pattern chapters are derived from the manuscript headings; changing a heading changes its URL. Preserve or deliberately redirect previously published URLs when renaming a page.
 
-Do not hand-edit `dist/`, commit credentials, or include the separate Rust solution corpus. The PDF is a historical snapshot; editing the web manuscript does not update it. Regenerate and visually review a new PDF before replacing that asset.
+Do not hand-edit `dist/`, commit credentials, or include the separate Rust solution corpus. The problem library imports metadata only. The learner's tutoring exercises in that corpus's `python_practice/` directory are private study records; write original exercises instead of copying them. The PDF is a historical snapshot; editing the web manuscript does not update it. Regenerate and visually review a new PDF before replacing that asset.
 
 Contributions to original prose and code are submitted under their respective project licenses: CC BY-SA 4.0 and MIT.

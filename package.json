@@ -7,6 +7,7 @@
     "dev": "python3 scripts/build.py --serve",
     "test": "node --test tests/*.test.mjs",
     "test:patterns": "python3 scripts/check-patterns.py",
+    "test:lessons": "python3 scripts/check-lessons.py",
     "test:site": "node scripts/check-site.mjs",
     "deploy": "wrangler deploy",
     "deploy:check": "wrangler deploy --dry-run"
