@@ -3,8 +3,8 @@
   "catalog_sha256": "a6e9a6dd7499a7becea34842799e8db5573bac3cb21fe8493f77c7731eef86c2",
   "counts": {
     "catalog": 4072,
-    "written": 22,
-    "not_written": 4050,
+    "written": 23,
+    "not_written": 4049,
     "reviewed": 0
   },
   "categories": {
@@ -1209,8 +1209,14 @@
       "slug": "linked-list-cycle",
       "title": "Linked List Cycle",
       "category": "Algorithms",
-      "status": "not_written",
-      "language_policy": "python"
+      "status": "written",
+      "language_policy": "python",
+      "lesson_url": "/worked/linked-list-cycle/",
+      "lesson_source": "content/lessons/worked/linked-list-cycle.md",
+      "source_sha256": "d43b9b022194414bf8bd5b88204d431c3f4852173f08007ddffe0bbee6504459",
+      "difficulty": "Easy",
+      "review_status": "pending",
+      "verification_status": "not_recorded"
     },
     {
       "id": 142,

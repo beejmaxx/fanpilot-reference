@@ -37,6 +37,15 @@
       ],
       "reason": "Readable Python across hashing, windows, scans, intervals, linked lists, trees, grids and DP; related to the pilot where possible. Includes Trapping Rain Water as a Hard lesson to check depth and presentation.",
       "lesson_count": 10
+    },
+    {
+      "name": "Trees, graphs, enumeration and dynamic programming",
+      "status": "in_progress",
+      "problem_ids": [
+        141
+      ],
+      "reason": "Ten-problem content handoff: identity, subtree summaries, bounds, graph ordering, connectivity, shortest paths, subsets and DP.",
+      "lesson_count": 1
     }
   ]
 }
