@@ -41,6 +41,7 @@ EXTRA = [('index', '/', 'Start here', 'hub'), ('patterns', '/patterns/', 'LeetCo
          ('worked/sliding-window-maximum', '/worked/sliding-window-maximum/', 'Sliding Window Maximum · Hard', 'Worked lessons'),
          ('worked/koko-eating-bananas', '/worked/koko-eating-bananas/', 'Koko Eating Bananas · Medium', 'Worked lessons'),
          ('worked/valid-parentheses', '/worked/valid-parentheses/', 'Valid Parentheses · Easy', 'Worked lessons'),
+         ('worked/kth-largest-element', '/worked/kth-largest-element/', 'Kth Largest Element · Medium', 'Worked lessons'),
          ('lru-cache', '/system-design/lru-cache/', 'LRU cache', 'System design'),
          ('file-system', '/system-design/file-system/', 'File system', 'System design'),
          ('research', '/research/', 'Research & sources', 'The reference'),
