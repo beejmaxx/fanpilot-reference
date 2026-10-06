@@ -109,3 +109,37 @@ accounts or remote code execution.
 
 No Sites, GitHub Actions, accounts or database setup are requested. Deployments
 remain manual. Keep system-design expansion separate from completing this catalog.
+
+## Direct handoff to Sol in tmux pane 3 (2026-10-06)
+
+The user explicitly wants Sol to do the remaining full-catalog content work to
+save credits. The user corrected the infrastructure detour: prioritize adding
+actual Python solutions and lessons, not more site optimization. Loading/search
+work is finished and committed as `417077d`; its build, 89 Python blocks, seven
+lab tests, 65-page site check, and all 22 solution-browser checks passed.
+
+Three NEW draft files are untracked, not registered, not yet executed or reviewed:
+
+- `content/lessons/worked/linked-list-cycle.md` (141)
+- `content/lessons/worked/balanced-binary-tree.md` (110)
+- `content/lessons/worked/diameter-of-binary-tree.md` (543)
+
+Review and finish those rather than overwriting or recreating them. Complete
+this ten-problem batch by adding Validate Binary Search Tree (98), Course
+Schedule (207), Redundant Connection (684), Network Delay Time (743), Subsets
+(78), Coin Change (322), and Edit Distance (72). Local Rust files in
+`src/section01/pNNNN_*.rs` in the original corpus include problem contracts.
+Write original Python/prose, using the exact existing lesson template. The tree
+drafts deliberately use iterative postorder to handle deep trees in Python.
+
+Then register each lesson, execute baseline/reference comparisons, build, run
+site/solution checks, update batch/progress/verification records, and commit each
+finished lesson separately. Tests are not human approval. Report concrete
+problem names and counts frequently (the user requested periodic updates).
+The intended scope remains all 4,072 catalog entries, in reviewable chunks;
+this next ten is a batch, not the complete task. Avoid further infrastructure,
+redesign, deployment, CI, or database work. Preserve Claude's design work.
+
+Current published-content count before these drafts: 22 complete, 4,050 missing.
+Preview: http://127.0.0.1:8765/solutions/ . A dev server is already listening;
+restart it only if builder changes require it. Do not claim drafts as completed.
