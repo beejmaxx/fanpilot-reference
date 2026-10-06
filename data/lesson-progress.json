@@ -3,8 +3,8 @@
   "catalog_sha256": "a6e9a6dd7499a7becea34842799e8db5573bac3cb21fe8493f77c7731eef86c2",
   "counts": {
     "catalog": 4072,
-    "written": 23,
-    "not_written": 4049,
+    "written": 24,
+    "not_written": 4048,
     "reviewed": 0
   },
   "categories": {
@@ -961,8 +961,14 @@
       "slug": "balanced-binary-tree",
       "title": "Balanced Binary Tree",
       "category": "Algorithms",
-      "status": "not_written",
-      "language_policy": "python"
+      "status": "written",
+      "language_policy": "python",
+      "lesson_url": "/worked/balanced-binary-tree/",
+      "lesson_source": "content/lessons/worked/balanced-binary-tree.md",
+      "source_sha256": "4c1666d9f0665810b7177c82cb29515c4477a2ffb80a67f789ef79ab0ec21b34",
+      "difficulty": "Easy",
+      "review_status": "pending",
+      "verification_status": "not_recorded"
     },
     {
       "id": 111,
