@@ -59,6 +59,7 @@ EXTRA = [('index', '/', 'Start here', 'hub'), ('patterns', '/patterns/', 'LeetCo
          ('worked/validate-binary-search-tree', '/worked/validate-binary-search-tree/', 'Validate Binary Search Tree · Medium', 'Worked lessons'),
          ('worked/course-schedule', '/worked/course-schedule/', 'Course Schedule · Medium', 'Worked lessons'),
          ('worked/redundant-connection', '/worked/redundant-connection/', 'Redundant Connection · Medium', 'Worked lessons'),
+         ('worked/network-delay-time', '/worked/network-delay-time/', 'Network Delay Time · Medium', 'Worked lessons'),
          ('lru-cache', '/system-design/lru-cache/', 'LRU cache', 'System design'),
          ('file-system', '/system-design/file-system/', 'File system', 'System design'),
          ('research', '/research/', 'Research & sources', 'The reference'),

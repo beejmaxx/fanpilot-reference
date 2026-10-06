@@ -47,10 +47,11 @@
         543,
         98,
         207,
-        684
+        684,
+        743
       ],
       "reason": "Ten-problem content handoff: identity, subtree summaries, bounds, graph ordering, connectivity, shortest paths, subsets and DP.",
-      "lesson_count": 6
+      "lesson_count": 7
     }
   ]
 }

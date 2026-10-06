@@ -3,8 +3,8 @@
   "catalog_sha256": "a6e9a6dd7499a7becea34842799e8db5573bac3cb21fe8493f77c7731eef86c2",
   "counts": {
     "catalog": 4072,
-    "written": 28,
-    "not_written": 4044,
+    "written": 29,
+    "not_written": 4043,
     "reviewed": 0
   },
   "categories": {
@@ -6138,8 +6138,14 @@
       "slug": "network-delay-time",
       "title": "Network Delay Time",
       "category": "Algorithms",
-      "status": "not_written",
-      "language_policy": "python"
+      "status": "written",
+      "language_policy": "python",
+      "lesson_url": "/worked/network-delay-time/",
+      "lesson_source": "content/lessons/worked/network-delay-time.md",
+      "source_sha256": "0606edd9a0da567d7d533e33e5455dccd848e7d087a305b13ddf1c46c4cddccc",
+      "difficulty": "Medium",
+      "review_status": "pending",
+      "verification_status": "not_recorded"
     },
     {
       "id": 744,
