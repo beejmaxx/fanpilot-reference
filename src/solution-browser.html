@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Browse solutions · Fanpilot</title>
+  <meta name="description" content="Flip through the worked lessons' Python solutions, one problem per screen."><meta name="color-scheme" content="light dark">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/solution-browser.css">
+  <script src="/solution-browser.js" defer></script>
+</head>
+<body class="sb">
+  <header class="masthead">
+    <a class="brand" href="/" aria-label="Fanpilot home"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect class="brand-window" x="9" y="7" width="14" height="18" rx="2"></rect><path d="M6 5v22M26 5v22" class="brand-bounds"></path></svg><span>Fanpilot</span></a>
+    <nav class="sections" aria-label="Sections"><a href="/worked/">Worked lessons</a><a href="/solutions/" aria-current="true">Browse solutions</a><a href="/problems/">Problem library</a></nav>
+  </header>
+  <nav class="sb-bar" aria-label="Problems">
+    <button type="button" class="sb-step" id="sb-prev" aria-label="Previous problem">←</button>
+    <div class="sb-tabs">{{TABS}}</div>
+    <button type="button" class="sb-step" id="sb-next" aria-label="Next problem">→</button>
+    <span class="sb-hint" aria-hidden="true"><kbd>←</kbd><kbd>→</kbd> to flip</span>
+  </nav>
+  <main class="sb-stage">{{PANELS}}</main>
+  <p class="sb-status sr-only" id="sb-status" role="status" aria-live="polite"></p>
+</body>
+</html>

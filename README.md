@@ -2,7 +2,7 @@
 
 A free, open-source guide to reasoning about LeetCode patterns, data structures, algorithms, and system design. Read it at **[fanpilot.app](https://fanpilot.app)**.
 
-The site contains 45 pages: a 32-chapter patterns book, two worked lessons in Python, six section hubs including a filterable library of 4,072 problems, a home page, research and attribution pages, and interactive LRU-cache and file-system lessons. The book links 125 practice problems and includes eight tested Rust examples. The design labs use original JavaScript models.
+The site contains 48 pages: a 32-chapter patterns book, five worked lessons in Python, six section hubs including a filterable library of 4,072 problems, a home page, research and attribution pages, and interactive LRU-cache and file-system lessons. The book links 125 practice problems and includes eight tested Rust examples. The design labs use original JavaScript models.
 
 The aim is to teach the chain from a correct baseline to a bottleneck, observation, transformation, invariant, and implementation. A complete problem corpus and a full distributed-systems curriculum remain future work.
 

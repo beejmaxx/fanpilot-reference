@@ -2,7 +2,7 @@
 
 *Worked lesson · Prefix sums and hashing · LC 560*
 
-This lesson is the deceptive partner of [the shortest subarray reaching a sum](/worked/shortest-subarray-reaching-a-sum/). The statements look alike: contiguous subarrays, a target sum. One sentence differs, values may be negative, and that sentence removes the sliding window's foundation. Related chapters: [prefix sums](/patterns/prefix-sums-and-algebraic-transformations/) and [hashing and sufficient summaries](/patterns/hashing-and-sufficient-summaries/).
+**Difficulty: Medium.** This lesson is the deceptive partner of [the shortest subarray reaching a sum](/worked/shortest-subarray-reaching-a-sum/). The statements look alike: contiguous subarrays, a target sum. One sentence differs, values may be negative, and that sentence removes the sliding window's foundation. Related chapters: [prefix sums](/patterns/prefix-sums-and-algebraic-transformations/) and [hashing and sufficient summaries](/patterns/hashing-and-sufficient-summaries/).
 
 ## 1. The problem
 
@@ -140,7 +140,13 @@ assert count_subarrays([5], 0) == 0
 
 **Edge cases.** Empty input gives `0`. `k = 0` and runs of zeros are exactly where insertion order matters. Python integers are unbounded; in fixed-width languages, prefix sums of up to 20,000 values of magnitude 1,000 fit in 32 bits, but check the actual constraints before relying on that.
 
-**Check it against the baseline,** including negative values and zeros that the window cannot handle:
+**Where it stops being enough.** The hash map answers equality questions. If the question becomes "sum **at least** k" or "sum between lower and upper", you need earlier prefix sums in a range, which a hash map cannot count. Use an order-aware structure instead: a Fenwick tree over compressed prefix values, or merge sort counting, as in [Count of Range Sum](https://leetcode.com/problems/count-of-range-sum/) (LC 327). And if you must output every qualifying subarray, the output itself can be quadratic; no counting trick helps.
+
+{{DEEP_DIVE}}
+
+#### Check it against the baseline
+
+Compare against the baseline on random inputs, including negative values and zeros that the window cannot handle:
 
 ```python
 import random
@@ -152,9 +158,7 @@ for _ in range(2000):
     assert count_subarrays(nums, k) == count_baseline(nums, k), (nums, k)
 ```
 
-**Where it stops being enough.** The hash map answers equality questions. If the question becomes "sum **at least** k" or "sum between lower and upper", you need earlier prefix sums in a range, which a hash map cannot count. Use an order-aware structure instead: a Fenwick tree over compressed prefix values, or merge sort counting, as in [Count of Range Sum](https://leetcode.com/problems/count-of-range-sum/) (LC 327). And if you must output every qualifying subarray, the output itself can be quadratic; no counting trick helps.
-
-## 8. Related problems
+#### Related problems
 
 | Problem | What changes | What follows |
 | --- | --- | --- |
@@ -176,4 +180,8 @@ for _ in range(2000):
 | Extra space | O(1) | O(n) |
 | Breaks when | A value is zero or negative | The condition is an inequality |
 
-**Reconstruct it.** Write the prefix-sum identity from memory, rearrange it so one side depends only on the start, and explain why the map is seeded with `{0: 1}` and updated after the lookup. Then solve LC 1248 without rereading this page.
+#### Reconstruct it
+
+Write the prefix-sum identity from memory, rearrange it so one side depends only on the start, and explain why the map is seeded with `{0: 1}` and updated after the lookup. Then solve LC 1248 without rereading this page.
+
+{{END_DEEP_DIVE}}

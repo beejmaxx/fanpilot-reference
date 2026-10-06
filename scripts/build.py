@@ -11,6 +11,10 @@ from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from threading import Thread
 import time
 from markdown_it import MarkdownIt
+from pygments import highlight
+from pygments.lexers import PythonLexer
+from pygments.formatters import HtmlFormatter
+from solution_browser import build_browser
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / 'src'
@@ -25,10 +29,13 @@ EXTRA = [('index', '/', 'Start here', 'hub'), ('patterns', '/patterns/', 'LeetCo
          ('algorithms', '/algorithms/', 'Algorithms', 'hub'),
          ('system-design', '/system-design/', 'System design', 'hub'),
          ('problems', '/problems/', 'Problem library', 'hub'),
+         ('worked/two-sum', '/worked/two-sum/', 'Two Sum · Easy', 'Worked lessons'),
          ('worked/shortest-subarray-reaching-a-sum', '/worked/shortest-subarray-reaching-a-sum/',
           'Shortest subarray reaching a sum', 'Worked lessons'),
          ('worked/subarrays-summing-to-k', '/worked/subarrays-summing-to-k/',
           'Subarrays summing to k', 'Worked lessons'),
+         ('worked/daily-temperatures', '/worked/daily-temperatures/', 'Daily Temperatures · Medium', 'Worked lessons'),
+         ('worked/sliding-window-maximum', '/worked/sliding-window-maximum/', 'Sliding Window Maximum · Hard', 'Worked lessons'),
          ('lru-cache', '/system-design/lru-cache/', 'LRU cache', 'System design'),
          ('file-system', '/system-design/file-system/', 'File system', 'System design'),
          ('research', '/research/', 'Research & sources', 'The reference'),
@@ -115,6 +122,13 @@ def build(destination):
     paths = {}
     for page in pages:
         content = parser.render(page.pop('markdown'))
+        content = re.sub(
+            r'<pre><code class="language-python">(.*?)</code></pre>',
+            lambda match: '<pre><code class="language-python">' + highlight(
+                html.unescape(match[1]), PythonLexer(), HtmlFormatter(nowrap=True)
+            ) + '</code></pre>', content, flags=re.S)
+        content = content.replace('<p>{{DEEP_DIVE}}</p>', '<details class="lesson-deep"><summary>Going further: random checks, related problems, and a reconstruction exercise</summary>')
+        content = content.replace('<p>{{END_DEEP_DIVE}}</p>', '</details>')
         sections = []
         def heading(match):
             text = html.unescape(re.sub('<[^>]+>','',match[2]))
@@ -129,7 +143,9 @@ def build(destination):
         if page['id']=='index':
             cards = '<ul class="section-index">'+''.join(
                 f'<li><a href="{url}">{label}</a><p>{HUB_DESCRIPTIONS[key]}</p></li>'
-                for key,url,label,group in EXTRA if group=='hub' and key!='index')+'</ul>'
+                for key,url,label,group in EXTRA if group=='hub' and key!='index').replace(
+                '</li><li><a href="/data-structures/">',
+                '</li><li><a href="/solutions/">Browse solutions</a><p>Flip through every Python solution, one problem per screen.</p></li><li><a href="/data-structures/">',1)+'</ul>'
             content=content.replace('<p>{{LEARNING_PATHS}}</p>',cards).replace('<p>{{HERO_TRACE}}</p>',(SOURCE/'hero-trace.html').read_text())
         plain=html.unescape(re.sub('<[^>]+>',' ',content.replace('{{PROBLEM_LIBRARY}}','')));plain=re.sub(r'\s+',' ',plain).strip()
         if page['id']=='problems':content=content.replace('<p>{{PROBLEM_LIBRARY}}</p>',library['html'])
@@ -175,6 +191,7 @@ def build(destination):
             hub=next(e for e in EXTRA if e[0]==section)
             nav.append(f'<h2 class="nav-group"><a href="{hub[1]}">{hub[2]}</a></h2><ol class="chapter-list">')
             nav.append(link(hub[1],'Overview',page.get('key')==section))
+            if section=='worked':nav.append(link('/solutions/','Browse all solutions →',False))
             for key,url,label,group in EXTRA:
                 if section_of.get(key)==section and group!='hub':nav.append(link(url,label,page.get('key')==key))
             nav.append('</ol>')
@@ -183,6 +200,7 @@ def build(destination):
             for key,url,label,group in hubs:
                 children=[e for e in EXTRA if section_of.get(e[0])==key and e[3]!='hub']
                 inner=''.join(link(u,l,page.get('key')==k) for k,u,l,g in children)
+                if key=='worked':inner=link('/solutions/','Browse all solutions →',False)+inner
                 nav.append(link(url,label,page.get('key')==key).replace('</li>',(f'<ol class="chapter-list nested">{inner}</ol>' if inner else '')+'</li>'))
             nav.append('</ol>')
         title=html.escape(page['title'])
@@ -190,7 +208,18 @@ def build(destination):
         elif page['group'] in ('Worked lessons','System design'):meta=f'<span>{page["group"]}</span>'
         else:meta='<span></span>'
         article=f'<article class="chapter" id="{page["id"]}"><header class="chapter-heading"><p class="chapter-meta">{meta}<span>{page["minutes"]} min read</span></p><h1 tabindex="-1">{title}</h1></header><div class="prose">{page["content"]}</div></article>'
+        if page.get('key', '').startswith('worked/'):
+            controls = '<p class="lesson-controls"><a href="/solutions/#' + page['key'].split('/')[-1] + '">Just the code? Flip through every solution →</a></p>'
+            article = article.replace('<div class="prose">', controls + '<div class="prose">', 1)
         pager=[]
+        if page.get('key', '').startswith('worked/'):
+            lessons = [p for p in pages if p.get('key', '').startswith('worked/')]
+            position = lessons.index(page)
+            for offset, label in [(-1, 'Previous'), (1, 'Next')]:
+                index = position + offset
+                if 0 <= index < len(lessons):
+                    other = lessons[index]
+                    pager.append(f'<a href="{other["url"]}"><span>{label} problem</span><strong>{html.escape(other["title"])}</strong></a>')
         if page['number']:
             for offset,label in [(-1,'Previous'),(1,'Next')]:
                 index=page['number']-1+offset
@@ -206,6 +235,7 @@ def build(destination):
         assert not re.search(r'\{\{[A-Z_]+\}\}',result)
         output=destination/page['url'].lstrip('/')/'index.html';output.parent.mkdir(parents=True,exist_ok=True)
         pending=output.with_suffix('.html.tmp');pending.write_text(result);pending.replace(output)
+    build_browser(ROOT, destination, EXTRA)
     (destination/'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'+''.join('<url><loc>https://fanpilot.app'+p['url']+'</loc></url>' for p in pages)+'</urlset>\n')
     (destination/'robots.txt').write_text('User-agent: *\nAllow: /\nSitemap: https://fanpilot.app/sitemap.xml\n')
     (destination/'404.html').write_text('<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Page not found · Fanpilot</title><link rel="stylesheet" href="/styles.css"><main class="not-found"><p><a class="brand" href="/">Fanpilot</a></p><h1>That page is not here.</h1><p>The address may be mistyped, or the page may have moved. <a href="/">Go to the start page</a> or <a href="/problems/">search the problem library</a>.</p></main></html>')

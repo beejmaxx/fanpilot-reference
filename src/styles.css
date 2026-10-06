@@ -285,3 +285,26 @@ body[data-page="index"] .chapter-meta{display:none}
   .prose pre{white-space:pre-wrap;break-inside:avoid}
   .prose a{color:inherit}
 }
+
+/* Worked lessons: the derivation stays in the lesson; only extras collapse. */
+.lesson-controls{margin:1rem 0;font:500 .9rem var(--sans)}
+.lesson-deep{margin:2.5rem 0;padding:1rem 1.25rem;border:1px solid var(--rule);border-radius:8px}
+.lesson-deep summary{cursor:pointer;font:600 1rem var(--sans);color:var(--ink)}
+.lesson-deep[open] summary{margin-bottom:.5rem}
+@media print{.lesson-controls{display:none}.lesson-deep{border:0;padding:0}}
+
+/* Python tokens, highlighted at build time (GitHub's palette): one distinct hue per token class. */
+.language-python .k,.language-python .kn,.language-python .kc,.language-python .kd,.language-python .kr,.language-python .ow{color:#cf222e}
+.language-python .nf,.language-python .fm,.language-python .nd{color:#8250df}
+.language-python .nc,.language-python .nb,.language-python .bp{color:#953800}
+.language-python .s,.language-python .s1,.language-python .s2,.language-python .sa,.language-python .se,.language-python .si{color:#0a3069}
+.language-python .sd,.language-python .c,.language-python .c1,.language-python .ch,.language-python .cm{color:#6e7781;font-style:italic}
+.language-python .mi,.language-python .mf,.language-python .mh{color:#0550ae}
+@media(prefers-color-scheme:dark){
+  .language-python .k,.language-python .kn,.language-python .kc,.language-python .kd,.language-python .kr,.language-python .ow{color:#ff7b72}
+  .language-python .nf,.language-python .fm,.language-python .nd{color:#d2a8ff}
+  .language-python .nc,.language-python .nb,.language-python .bp{color:#ffa657}
+  .language-python .s,.language-python .s1,.language-python .s2,.language-python .sa,.language-python .se,.language-python .si{color:#a5d6ff}
+  .language-python .sd,.language-python .c,.language-python .c1,.language-python .ch,.language-python .cm{color:#8b949e}
+  .language-python .mi,.language-python .mf,.language-python .mh{color:#79c0ff}
+}

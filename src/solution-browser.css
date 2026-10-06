@@ -1,0 +1,64 @@
+/* Solution browser: one problem per screen, statement beside code. */
+.sb{--sb-font:15px;font-family:var(--sans)}
+.sb .masthead{position:static}
+
+/* Problem tabs */
+.sb-bar{display:flex;align-items:center;gap:.5rem;padding:.6rem 1.5rem;border-bottom:1px solid var(--rule);background:var(--paper)}
+.sb-tabs{position:relative;display:flex;gap:.25rem;flex:1;min-width:0;overflow-x:auto;scrollbar-width:none}
+.sb-tab{display:flex;align-items:center;gap:.5rem;padding:.4rem .75rem;border-radius:6px;color:var(--muted);text-decoration:none;font-size:.9rem;font-weight:500;white-space:nowrap;border:1px solid transparent}
+.sb-tab:hover{color:var(--ink);background:var(--wash)}
+.sb-tab[aria-current]{color:var(--ink);background:var(--raised);border-color:var(--rule-strong);box-shadow:inset 0 -3px 0 var(--mark)}
+.sb-num{font:.75rem var(--mono);color:var(--faint)}
+.sb-dot{width:7px;height:7px;border-radius:50%;background:currentColor;flex-shrink:0}
+.sb-step{padding:.35rem .7rem;font-size:1rem;line-height:1}
+.sb-hint{font-size:.8rem;color:var(--muted);white-space:nowrap;margin-left:.5rem}
+.sb-hint kbd{font:.75rem var(--mono);border:1px solid var(--rule-strong);border-bottom-width:2px;border-radius:4px;padding:0 .35rem;margin-right:.2rem;color:var(--ink);background:var(--raised)}
+:not(.sb-paged) > .sb-bar .sb-step,:not(.sb-paged) > .sb-bar .sb-hint{display:none}
+
+/* Difficulty colours */
+.sb-easy{--diff:#1a7f37}.sb-medium{--diff:#9a6700}.sb-hard{--diff:#cf222e}
+@media(prefers-color-scheme:dark){.sb-easy{--diff:#56d364}.sb-medium{--diff:#e3b341}.sb-hard{--diff:#ff7b72}}
+.sb-dot{color:var(--diff)}
+.sb-badge{color:var(--diff);border:1px solid currentColor;border-radius:999px;padding:.05rem .55rem;font-weight:600;font-size:.75rem}
+
+/* Card: problem | code */
+.sb-stage{max-width:90rem;margin:0 auto;padding:1rem 1.5rem 1.25rem}
+.sb-panel{display:grid;grid-template-columns:minmax(19rem,2fr) 3fr;border:1px solid var(--rule-strong);border-radius:10px;overflow:hidden;background:var(--raised);margin-bottom:1.25rem}
+.sb-problem{padding:1.4rem 1.6rem;border-right:1px solid var(--rule);overflow-y:auto;color:var(--body);font:400 1rem/1.6 var(--serif)}
+.sb-meta{display:flex;align-items:center;flex-wrap:wrap;gap:.4rem .8rem;margin:0 0 .6rem;font:500 .8rem var(--sans);color:var(--muted)}
+.sb-meta a{margin-left:auto;color:var(--muted)}
+.sb-problem h1{margin:0 0 .8rem;font:650 1.6rem/1.2 var(--sans);letter-spacing:-.02em;color:var(--ink)}
+.sb-statement p{margin:0 0 .8rem}
+.sb-statement code{font:.88em var(--mono);font-variant-ligatures:none;background:var(--code);border-radius:4px;padding:.05em .3em}
+.sb-statement table{width:100%;border-collapse:collapse;margin:1rem 0;font:.85rem/1.4 var(--sans)}
+.sb-statement th{text-align:left;color:var(--muted);font-weight:600;border-bottom:1px solid var(--rule-strong);padding:.35rem .5rem .35rem 0}
+.sb-statement td{border-bottom:1px solid var(--rule);padding:.45rem .5rem .45rem 0;vertical-align:top}
+.sb-statement td code{font-size:.92em;white-space:nowrap}
+.sb-lesson{display:inline-block;margin-top:.4rem;font:600 .9rem var(--sans)}
+
+.sb-editor{display:flex;flex-direction:column;min-width:0;min-height:0}
+.sb-editor-bar{display:flex;align-items:center;justify-content:space-between;padding:.45rem .6rem .45rem 1rem;border-bottom:1px solid var(--rule);background:var(--wash)}
+.sb-file{font:.8rem var(--mono);color:var(--muted)}
+.sb-tools{display:flex;gap:.3rem}
+.sb-tools button{padding:.2rem .55rem;font-size:.78rem}
+.sb-code{flex:1;min-height:0;overflow:auto;display:flex;font:var(--sb-font)/1.6 var(--mono);font-variant-ligatures:none;tab-size:4}
+.sb-code pre{margin:0;padding:1rem 0;font:inherit;background:none;border:0}
+.sb-gutter{flex-shrink:0;padding:1rem .9rem 1rem 1rem!important;text-align:right;color:var(--faint);user-select:none;border-right:1px solid var(--rule);position:sticky;left:0;background:var(--raised)}
+.sb-source{flex:1;padding:1rem 1.25rem!important}
+.sb-source code{font:inherit;background:none;padding:0;color:var(--ink)}
+
+/* Paged: fill the viewport, scroll inside the panes only. */
+@media(min-width:900px){
+  .sb-paged{height:100dvh;display:flex;flex-direction:column;overflow:hidden}
+  .sb-paged .sb-stage{flex:1;min-height:0;width:100%}
+  .sb-paged .sb-panel{height:100%;margin:0}
+}
+@media(max-width:899px){
+  .sb-panel{grid-template-columns:1fr}
+  .sb-problem{border-right:0;border-bottom:1px solid var(--rule)}
+  .sb-code{max-height:75vh}
+  .sb-hint{display:none!important}
+  .sb-bar,.sb-stage{padding-left:1rem;padding-right:1rem}
+  .sb .sections a:not([aria-current]){display:none}
+}
+@media(max-width:600px){.sb-tab-title{display:none}.sb-tab[aria-current] .sb-tab-title{display:inline}.sb-problem{padding:1.1rem}}

@@ -2,7 +2,7 @@
 
 *Worked lesson · Sliding window · LC 209*
 
-This lesson derives a variable-size sliding window. The technique is short to write and easy to misapply, so most of the work is in the argument: why an index can move forward and never come back. Prerequisite: comfort with loops over a list. Related chapter: [sliding windows and monotone validity](/patterns/sliding-windows-and-monotone-validity/).
+**Difficulty: Medium.** This lesson derives a variable-size sliding window. The technique is short to write and easy to misapply, so most of the work is in the argument: why an index can move forward and never come back. Prerequisite: comfort with loops over a list. Related chapter: [sliding windows and monotone validity](/patterns/sliding-windows-and-monotone-validity/).
 
 ## 1. The problem
 
@@ -127,7 +127,11 @@ assert shortest_subarray([1, -1, 5], 5) == 3  # wrong: the window's argument nee
 
 The code runs without error and returns a plausible number. That is why the precondition belongs in the docstring and why the proof, not a few passing examples, decides whether the technique applies.
 
-**Check it against the baseline.** Random positive lists exercise far more cases than a hand-picked handful:
+{{DEEP_DIVE}}
+
+#### Check it against the baseline
+
+Random positive lists exercise far more cases than a hand-picked handful:
 
 ```python
 import random
@@ -139,9 +143,7 @@ for _ in range(2000):
     assert shortest_subarray(nums, target) == shortest_baseline(nums, target), (nums, target)
 ```
 
-**An alternative worth knowing.** Because values are positive, prefix sums are strictly increasing. For each start you could binary-search the first prefix sum at least `prefix[start] + target`, giving O(n log n). It is slower than the window but relies on the same positivity, and it generalizes to some variants where moving two pointers is awkward.
-
-## 7. Related problems
+#### Related problems
 
 Each problem below changes one thing. Before reading the note, decide whether the window argument still holds.
 
@@ -155,4 +157,10 @@ Each problem below changes one thing. Before reading the note, decide whether th
 
 The deceptive one is LC 862. Its statement is nearly identical to this lesson's problem, and a sliding window passes many hand-made tests before failing on a negative value. Compare its official constraints with LC 209's before choosing.
 
-**Reconstruct it.** Close this page. Write the baseline, name the repeated work, state the observation about positive values in one sentence, and then write the window. Finally, explain to yourself what goes wrong on `[1, -1, 5]`.
+**An alternative worth knowing.** Because values are positive, prefix sums are strictly increasing. For each start you could binary-search the first prefix sum at least `prefix[start] + target`, giving O(n log n). It is slower than the window but relies on the same positivity, and it generalizes to some variants where moving two pointers is awkward.
+
+#### Reconstruct it
+
+Close this page. Write the baseline, name the repeated work, state the observation about positive values in one sentence, and then write the window. Finally, explain to yourself what goes wrong on `[1, -1, 5]`.
+
+{{END_DEEP_DIVE}}
