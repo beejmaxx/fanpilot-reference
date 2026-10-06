@@ -3,8 +3,8 @@
   "catalog_sha256": "a6e9a6dd7499a7becea34842799e8db5573bac3cb21fe8493f77c7731eef86c2",
   "counts": {
     "catalog": 4072,
-    "written": 26,
-    "not_written": 4046,
+    "written": 27,
+    "not_written": 4045,
     "reviewed": 0
   },
   "categories": {
@@ -1783,8 +1783,14 @@
       "slug": "course-schedule",
       "title": "Course Schedule",
       "category": "Algorithms",
-      "status": "not_written",
-      "language_policy": "python"
+      "status": "written",
+      "language_policy": "python",
+      "lesson_url": "/worked/course-schedule/",
+      "lesson_source": "content/lessons/worked/course-schedule.md",
+      "source_sha256": "8c26533f83c2632a2cb0e9d5435f830a666f545a3ab6060715a310adb9bc05fe",
+      "difficulty": "Medium",
+      "review_status": "pending",
+      "verification_status": "not_recorded"
     },
     {
       "id": 208,
