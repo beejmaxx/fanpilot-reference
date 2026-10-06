@@ -31,6 +31,7 @@ EXTRA = [('index', '/', 'Start here', 'hub'), ('patterns', '/patterns/', 'LeetCo
          ('problems', '/problems/', 'Problem library', 'hub'),
          ('worked/two-sum', '/worked/two-sum/', 'Two Sum · Easy', 'Worked lessons'),
          ('worked/group-anagrams', '/worked/group-anagrams/', 'Group Anagrams · Medium', 'Worked lessons'),
+         ('worked/two-sum-ii', '/worked/two-sum-ii/', 'Two Sum II · Medium', 'Worked lessons'),
          ('worked/shortest-subarray-reaching-a-sum', '/worked/shortest-subarray-reaching-a-sum/',
           'Shortest subarray reaching a sum', 'Worked lessons'),
          ('worked/subarrays-summing-to-k', '/worked/subarrays-summing-to-k/',
