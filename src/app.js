@@ -2,8 +2,15 @@
 (() => {
   'use strict';
   document.documentElement.classList.add('js-ready');
-  const pages=JSON.parse(document.getElementById('chapter-data').textContent);
-  const page=pages.find(p=>p.id===document.body.dataset.page);
+  const page=JSON.parse(document.getElementById('chapter-data').textContent);
+  let searchData, searchRequest=0;
+  function loadSearch() {
+    if(!searchData) searchData=fetch(page.search_url).then(response=>{
+      if(!response.ok)throw new Error('Search unavailable');
+      return response.json();
+    }).catch(error=>{searchData=null;throw error;});
+    return searchData;
+  }
   const $=id=>document.getElementById(id);
   const search=$('book-search'), panel=$('search-panel'), results=$('search-results');
   const narrow=window.matchMedia('(max-width: 800px)');
@@ -32,15 +39,25 @@
     const mark=document.createElement('mark');mark.textContent=text.slice(index,index+query.length);
     element.append(mark,document.createTextNode(text.slice(index+query.length)));
   }
-  function runSearch() {
+  async function runSearch() {
+    const token=++searchRequest;
     const query=search.value.trim();const terms=query.toLowerCase().split(/\s+/).filter(Boolean);
     panel.hidden=!query;results.replaceChildren();
     if(!query){$('search-status').textContent='';return;}
+    $('search-status').textContent='Loading search…';
+    let pages;
+    try {pages=await loadSearch();}
+    catch {
+      if(token!==searchRequest)return;
+      $('search-status').textContent='Search could not load.';
+      const retry=document.createElement('button');retry.type='button';retry.textContent='Retry search';retry.onclick=runSearch;results.append(retry);return;
+    }
+    if(token!==searchRequest)return;
     const found=pages.filter(p=>terms.every(t=>(p.title+' '+p.text).toLowerCase().includes(t)));
     found.sort((a,b)=>Number(b.title.toLowerCase().includes(query.toLowerCase()))-Number(a.title.toLowerCase().includes(query.toLowerCase())));
-    $('search-status').textContent=found.length+(found.length===1?' matching page':' matching pages');
+    $('search-status').textContent=found.length+(found.length===1?' matching page':' matching pages')+(found.length>50?' (showing first 50)':'');
     if(!found.length){const p=document.createElement('p');p.className='empty-search';p.textContent='No pages found. Try a technique, an observation, or a problem number.';results.append(p);}
-    for(const item of found){
+    for(const item of found.slice(0,50)){
       const link=document.createElement('a');link.className='search-result';link.href=item.url;
       const title=document.createElement('strong');highlighted(title,item.title,query);
       const index=Math.max(0,item.text.toLowerCase().indexOf(terms[0]));const start=Math.max(0,index-45);

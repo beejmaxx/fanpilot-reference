@@ -86,20 +86,26 @@ npm test
 ```
 
 With the preview server running, `python3 scripts/catalog-progress.py --verify`
-runs these plus `npm run test:site` and updates source-hash receipts. Independently
-check each new panel at `/solutions/#<lesson-slug>`; the normal manifest does not
-exercise browser interactions on every solution panel. Review desktop/mobile
-presentation and actual copyable source, not just builder success.
+runs these plus `npm run test:site` and `npm run test:solutions` and updates
+source-hash receipts. The latter checks every registered solution and its copyable
+code, mobile layout, deep links, asynchronous loading, retries and request races.
+Also review presentation at `/solutions/#<lesson-slug>`; passing interaction
+checks does not establish explanation quality.
 
 ## Static-site scaling for Claude
 
 Stay with static HTML/JSON and browser JavaScript. A database is not required for
-publishing thousands of lessons. Before large expansion, move the search index
-out of every page and make the solution browser load individual problem data
-(or small batches) instead of embedding all panels. At 22 lessons the generated
-home page is about 285 KiB and the browser about 101 KiB, uncompressed. Thousands
-of panels should not be shipped on one request. Personal review state can stay
-local; a backend is a future choice for synced accounts or remote code execution.
+publishing thousands of lessons. The initial scaling work is now implemented:
+each page embeds its own outline; search fetches a separate index on the first
+query; the browser loads its index and one problem payload at a time, keeping
+five recent payloads. The build generates content-addressed JSON from the
+existing Markdown and retains current/previous asset versions. At 22 lessons,
+the homepage is about 12.3 KiB and browser shell 1.8 KiB, plus a 4 KiB solution
+index and a selected payload of 3.3–8.2 KiB, uncompressed. Full-text search data
+is currently 250 KiB; consider sharding it if measured search performance becomes
+poor as the catalog grows. Claude can continue navigation/design work separately.
+Personal review state can stay local; a backend is a future choice for synced
+accounts or remote code execution.
 
 No Sites, GitHub Actions, accounts or database setup are requested. Deployments
 remain manual. Keep system-design expansion separate from completing this catalog.

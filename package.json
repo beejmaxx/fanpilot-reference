@@ -9,6 +9,7 @@
     "test:patterns": "python3 scripts/check-patterns.py",
     "test:lessons": "python3 scripts/check-lessons.py",
     "test:site": "node scripts/check-site.mjs",
+    "test:solutions": "node scripts/check-solutions.mjs",
     "deploy": "wrangler deploy",
     "deploy:check": "wrangler deploy --dry-run"
   },

@@ -57,8 +57,10 @@ try {
   await page.keyboard.press('/');
   assert.equal(await page.locator('#book-search').evaluate(e=>document.activeElement===e),true);
   await page.locator('#book-search').fill('monotonic');
+  await page.locator('#search-results a').first().waitFor();
   assert.ok(await page.locator('#search-results a').count()>0);
   await page.locator('#book-search').fill('zzyzxnonexistent');
+  await page.waitForFunction(()=>document.getElementById('search-status').textContent.startsWith('0 matching'));
   assert.match(await page.locator('#search-status').innerText(), /0 matching/);
   await page.keyboard.press('Escape');
   assert.equal(await page.locator('#book-search').inputValue(),'');

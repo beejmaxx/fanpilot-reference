@@ -14,7 +14,7 @@ from markdown_it import MarkdownIt
 from pygments import highlight
 from pygments.lexers import PythonLexer
 from pygments.formatters import HtmlFormatter
-from solution_browser import build_browser
+from solution_browser import build_browser, json_asset
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / 'src'
@@ -170,7 +170,8 @@ def build(destination):
         assert not re.search(r'\{\{[A-Z_]+\}\}',content),page['id']
         assert page['url'] not in paths
         paths[page['url']]=page
-    data=json.dumps([{k:v for k,v in p.items() if k not in ('content','body','key')} for p in pages],ensure_ascii=False).replace('<','\\u003c').replace('&','\\u0026')
+    search_url=json_asset(destination, 'search-index',
+                          [{k:p[k] for k in ('title','url','text')} for p in pages])
     template=(SOURCE/'template.html').read_text()
     worked_count=sum(1 for e in EXTRA if e[3]=='Worked lessons')
     summary=f'{len(headings)} pattern chapters, {worked_count} worked lessons, and 2 design labs. A growing reference, not a finished one.'
@@ -245,6 +246,7 @@ def build(destination):
                     pager.append(f'<a class="{label.lower()}" href="{other["url"]}"><span>{label} chapter</span><strong>{html.escape(other["title"])}</strong></a>')
         if pager:article+='<nav class="chapter-pagination" aria-label="Chapter pagination">'+''.join(pager)+'</nav>'
         result=template
+        data=json.dumps({'sections':page['sections'], 'search_url':search_url},ensure_ascii=False).replace('<','\\u003c').replace('&','\\u0026')
         replacements={'{{NAVIGATION}}':''.join(nav),'{{SECTIONS}}':sections,'{{ARTICLE}}':article,'{{CHAPTER_DATA}}':data,'{{PAGE_ID}}':page['id'],
                       '{{PAGE_TITLE}}':title,'{{DESCRIPTION}}':html.escape(page['text'][:170],quote=True),
                       '{{CANONICAL}}':'https://fanpilot.app'+page['url'],'{{SIDEBAR_SUMMARY}}':summary}

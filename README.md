@@ -38,6 +38,8 @@ On Windows, activate with `.venv\Scripts\activate`; use a `python3` alias for th
 
 This is a standalone repository. Building it does not access the original Rust solution collection; `scripts/import-catalog.py /path/to/all_leetcode` refreshes the problem metadata snapshot manually, without importing solution code, statements, or company lists. The build does not require a database, account system, or application server. The browser labs store state only in the current page's memory.
 
+Lessons remain readable static HTML. Global search fetches a separate index on the first query; each page embeds only its own outline. The solution browser fetches a compact index and the selected problem's highlighted HTML, retaining five recent solutions in memory. These JSON files are generated from the same lesson sources, with content hashes in their filenames to avoid stale cached data. The build retains the current and previous data-file versions. Layout stays in CSS; changing the panels from side by side to stacked does not require rewriting lessons.
+
 ## Verify changes
 
 ```sh
@@ -54,9 +56,12 @@ For browser checks, keep the local server running in another terminal:
 ```sh
 npx playwright install chromium
 npm run test:site
+npm run test:solutions
 ```
 
 The browser checks visit every generated page, verify internal links and anchors, check desktop/mobile overflow, and exercise search, mobile navigation, both labs, the problem library's filters, and reading without JavaScript. Screenshots go into ignored `.qa/`. The script uses local Google Chrome on macOS when available; `CHROME_PATH` selects another executable. `SITE_URL=https://example.com` runs against a deployed build.
+
+`test:solutions` checks every registered browser solution, highlighted and copied code, deep links, keyboard navigation, recent-solution caching, font settings, mobile layout, rapid-navigation races, failed-download retries, lazy search, and the no-JavaScript link to the worked lessons. Run both browser checks after changing the templates, builder or browser code.
 
 Checks and publishing are run manually. There are no GitHub Actions workflows.
 

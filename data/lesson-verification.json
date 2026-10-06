@@ -1,10 +1,11 @@
 {
-  "checked_at_utc": "2026-10-06T06:11:50.290912+00:00",
+  "checked_at_utc": "2026-10-06T06:25:47.197118+00:00",
   "commands": [
     "/Applications/Xcode.app/Contents/Developer/usr/bin/python3 scripts/build.py",
     "/Applications/Xcode.app/Contents/Developer/usr/bin/python3 scripts/check-lessons.py",
     "npm test",
-    "npm run test:site"
+    "npm run test:site",
+    "npm run test:solutions"
   ],
   "source_hashes": {
     "1": "eaf7045484e0b1db337b5f35ea9c9d188a7c9b31d88566b2242f22c113c146bd",

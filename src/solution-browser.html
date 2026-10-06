@@ -8,18 +8,20 @@
   <link rel="stylesheet" href="/styles.css"><link rel="stylesheet" href="/solution-browser.css">
   <script src="/solution-browser.js" defer></script>
 </head>
-<body class="sb">
+<body class="sb" data-index="{{INDEX_URL}}">
   <header class="masthead">
     <a class="brand" href="/" aria-label="Fanpilot home"><svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect class="brand-window" x="9" y="7" width="14" height="18" rx="2"></rect><path d="M6 5v22M26 5v22" class="brand-bounds"></path></svg><span>Fanpilot</span></a>
     <nav class="sections" aria-label="Sections"><a href="/worked/">Worked lessons</a><a href="/solutions/" aria-current="true">Browse solutions</a><a href="/problems/">Problem library</a></nav>
   </header>
   <nav class="sb-bar" aria-label="Problems">
-    <button type="button" class="sb-step" id="sb-prev" aria-label="Previous problem">←</button>
-    <div class="sb-tabs">{{TABS}}</div>
-    <button type="button" class="sb-step" id="sb-next" aria-label="Next problem">→</button>
+    <button type="button" class="sb-step" id="sb-prev" aria-label="Previous problem" disabled>←</button>
+    <div class="sb-tabs"></div>
+    <button type="button" class="sb-step" id="sb-next" aria-label="Next problem" disabled>→</button>
     <span class="sb-hint" aria-hidden="true"><kbd>←</kbd><kbd>→</kbd> to flip</span>
   </nav>
-  <main class="sb-stage">{{PANELS}}</main>
+  <main class="sb-stage" aria-busy="true">
+    <noscript><p class="sb-message">The solution browser needs JavaScript. <a href="/worked/">Read the worked lessons</a> for the same problems and code.</p></noscript>
+  </main>
   <p class="sb-status sr-only" id="sb-status" role="status" aria-live="polite"></p>
 </body>
 </html>

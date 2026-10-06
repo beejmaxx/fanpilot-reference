@@ -1,11 +1,30 @@
 """Build a compact browser from the same Python blocks the lessons test."""
 import ast
 import html
+import hashlib
+import json
 import re
 from markdown_it import MarkdownIt
 from pygments import highlight
 from pygments.lexers import PythonLexer
 from pygments.formatters import HtmlFormatter
+
+
+def json_asset(destination, name, value):
+    """Content-addressed static data, so a rebuilt page cannot reuse stale data."""
+    data = json.dumps(value, ensure_ascii=False, separators=(',', ':'))
+    filename = f'{name}.{hashlib.sha256(data.encode()).hexdigest()[:12]}.json'
+    output = destination / filename
+    output.parent.mkdir(parents=True, exist_ok=True)
+    if not output.exists():
+        output.write_text(data)
+    # Keep the current and previous version; repeated local builds must not
+    # accumulate thousands of obsolete indexes or solution payloads.
+    previous = sorted((p for p in output.parent.glob(f'{output.stem.rsplit(".", 1)[0]}.*.json')
+                       if p != output), key=lambda p: p.stat().st_mtime_ns, reverse=True)
+    for stale in previous[1:]:
+        stale.unlink()
+    return '/' + filename
 
 
 def solution_code(text):
@@ -18,9 +37,9 @@ def solution_code(text):
 
 def build_browser(root, destination, routes):
     parser = MarkdownIt('commonmark', {'html': False}).enable('table')
-    tabs, panels = [], []
+    index = []
     lessons = [(key, url) for key, url, label, group in routes if group == 'Worked lessons']
-    for position, (key, url) in enumerate(lessons, 1):
+    for key, url in lessons:
         text = (root / 'content' / 'lessons' / (key + '.md')).read_text()
         slug = key.split('/')[-1]
         title = html.escape(re.search(r'^# (.+)$', text, re.M)[1])
@@ -35,9 +54,7 @@ def build_browser(root, destination, routes):
         problem = re.sub(r'\s*This is \[[^]]+\]\([^)]*\) \(LC \d+\)\.', '', problem)
         code = solution_code(text)
         lines = code.count('\n')
-        tabs.append(f'<a class="sb-tab" href="#{slug}" data-slug="{slug}"><span class="sb-num">{position}</span>'
-                    f'<span class="sb-tab-title">{title}</span><span class="sb-dot sb-{difficulty.lower()}" title="{difficulty}"></span></a>')
-        panels.append(
+        panel = (
             f'<section class="sb-panel" id="{slug}" aria-label="{title}" data-title="{title}">'
             f'<div class="sb-problem"><p class="sb-meta"><span class="sb-badge sb-{difficulty.lower()}">{difficulty}</span>'
             f'<span>{pattern}</span><a href="{leetcode}" rel="noopener">LeetCode {number} ↗</a></p>'
@@ -51,8 +68,12 @@ def build_browser(root, destination, routes):
             + '\n'.join(str(n) for n in range(1, lines + 1)) +
             f'</pre><pre class="sb-source"><code class="language-python">{highlight(code, PythonLexer(), HtmlFormatter(nowrap=True))}</code></pre></div></div>'
             '</section>')
+        data_url = json_asset(destination, f'solutions/data/{slug}', {'html': panel})
+        index.append({'slug': slug, 'title': html.unescape(title), 'difficulty': difficulty,
+                      'url': data_url, 'lesson_url': url})
+    index_url = json_asset(destination, 'solutions/solution-index', index)
     template = (root / 'src' / 'solution-browser.html').read_text()
-    page = template.replace('{{TABS}}', ''.join(tabs)).replace('{{PANELS}}', ''.join(panels)).replace('{{COUNT}}', str(len(lessons)))
+    page = template.replace('{{INDEX_URL}}', index_url)
     output = destination / 'solutions' / 'index.html'
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(page)

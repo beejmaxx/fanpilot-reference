@@ -46,7 +46,7 @@ for key, url in registered.items():
     }
 if args.verify:
     commands = [[sys.executable, 'scripts/build.py'], [sys.executable, 'scripts/check-lessons.py'],
-                ['npm', 'test'], ['npm', 'run', 'test:site']]
+                ['npm', 'test'], ['npm', 'run', 'test:site'], ['npm', 'run', 'test:solutions']]
     for command in commands:
         subprocess.run(command, cwd=ROOT, check=True)
     for entry in written.values():
