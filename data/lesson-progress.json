@@ -3,8 +3,8 @@
   "catalog_sha256": "a6e9a6dd7499a7becea34842799e8db5573bac3cb21fe8493f77c7731eef86c2",
   "counts": {
     "catalog": 4072,
-    "written": 12,
-    "not_written": 4060,
+    "written": 22,
+    "not_written": 4050,
     "reviewed": 0
   },
   "categories": {
@@ -27,7 +27,7 @@
       "difficulty": "Easy",
       "review_status": "pending",
       "verification_status": "checks_passed",
-      "checked_at_utc": "2026-10-06T06:06:08.157153+00:00"
+      "checked_at_utc": "2026-10-06T06:11:50.290912+00:00"
     },
     {
       "id": 2,
@@ -42,8 +42,15 @@
       "slug": "longest-substring-without-repeating-characters",
       "title": "Longest Substring Without Repeating Characters",
       "category": "Algorithms",
-      "status": "not_written",
-      "language_policy": "python"
+      "status": "written",
+      "language_policy": "python",
+      "lesson_url": "/worked/longest-substring-without-repeating-characters/",
+      "lesson_source": "content/lessons/worked/longest-substring-without-repeating-characters.md",
+      "source_sha256": "ccc17a473243bdd835ede17068821e944495b6fa6bdc734cda93d31c74f67319",
+      "difficulty": "Medium",
+      "review_status": "pending",
+      "verification_status": "checks_passed",
+      "checked_at_utc": "2026-10-06T06:11:50.290912+00:00"
     },
     {
       "id": 4,
@@ -186,7 +193,7 @@
       "difficulty": "Easy",
       "review_status": "pending",
       "verification_status": "checks_passed",
-      "checked_at_utc": "2026-10-06T06:06:08.157153+00:00"
+      "checked_at_utc": "2026-10-06T06:11:50.290912+00:00"
     },
     {
       "id": 21,
@@ -217,7 +224,7 @@
       "difficulty": "Hard",
       "review_status": "pending",
       "verification_status": "checks_passed",
-      "checked_at_utc": "2026-10-06T06:06:08.157153+00:00"
+      "checked_at_utc": "2026-10-06T06:11:50.290912+00:00"
     },
     {
       "id": 24,
@@ -320,7 +327,7 @@
       "difficulty": "Easy",
       "review_status": "pending",
       "verification_status": "checks_passed",
-      "checked_at_utc": "2026-10-06T06:06:08.157153+00:00"
+      "checked_at_utc": "2026-10-06T06:11:50.290912+00:00"
     },
     {
       "id": 36,
@@ -375,8 +382,15 @@
       "slug": "trapping-rain-water",
       "title": "Trapping Rain Water",
       "category": "Algorithms",
-      "status": "not_written",
-      "language_policy": "python"
+      "status": "written",
+      "language_policy": "python",
+      "lesson_url": "/worked/trapping-rain-water/",
+      "lesson_source": "content/lessons/worked/trapping-rain-water.md",
+      "source_sha256": "9f6a58943341bb78f5fc059a50929ca35d4d1593800557589f0e517ff72bc3ea",
+      "difficulty": "Hard",
+      "review_status": "pending",
+      "verification_status": "checks_passed",
+      "checked_at_utc": "2026-10-06T06:11:50.290912+00:00"
     },
     {
       "id": 43,
@@ -439,7 +453,7 @@
       "difficulty": "Medium",
       "review_status": "pending",
       "verification_status": "checks_passed",
-      "checked_at_utc": "2026-10-06T06:06:08.157153+00:00"
+      "checked_at_utc": "2026-10-06T06:11:50.290912+00:00"
     },
     {
       "id": 50,
@@ -470,8 +484,15 @@
       "slug": "maximum-subarray",
       "title": "Maximum Subarray",
       "category": "Algorithms",
-      "status": "not_written",
-      "language_policy": "python"
+      "status": "written",
+      "language_policy": "python",
+      "lesson_url": "/worked/maximum-subarray/",
+      "lesson_source": "content/lessons/worked/maximum-subarray.md",
+      "source_sha256": "ccc02a240a93188252d9c99a56f23f8fbc79618f3470102d80302493b73c9816",
+      "difficulty": "Medium",
+      "review_status": "pending",
+      "verification_status": "checks_passed",
+      "checked_at_utc": "2026-10-06T06:11:50.290912+00:00"
     },
     {
       "id": 54,
@@ -494,8 +515,15 @@
       "slug": "merge-intervals",
       "title": "Merge Intervals",
       "category": "Algorithms",
-      "status": "not_written",
-      "language_policy": "python"
+      "status": "written",
+      "language_policy": "python",
+      "lesson_url": "/worked/merge-intervals/",
+      "lesson_source": "content/lessons/worked/merge-intervals.md",
+      "source_sha256": "382b5f9a1d1cfbb5c960cef5c1399eb94923dd473d5c7bed71f7b660cccceb17",
+      "difficulty": "Medium",
+      "review_status": "pending",
+      "verification_status": "checks_passed",
+      "checked_at_utc": "2026-10-06T06:11:50.290912+00:00"
     },
     {
       "id": 57,
@@ -878,8 +906,15 @@
       "slug": "maximum-depth-of-binary-tree",
       "title": "Maximum Depth of Binary Tree",
       "category": "Algorithms",
-      "status": "not_written",
-      "language_policy": "python"
+      "status": "written",
+      "language_policy": "python",
+      "lesson_url": "/worked/maximum-depth-of-binary-tree/",
+      "lesson_source": "content/lessons/worked/maximum-depth-of-binary-tree.md",
+      "source_sha256": "bab8c0019e1b52043b951046316bce5856d9687f5925a5e456bc6e43ab016b5b",
+      "difficulty": "Easy",
+      "review_status": "pending",
+      "verification_status": "checks_passed",
+      "checked_at_utc": "2026-10-06T06:11:50.290912+00:00"
     },
     {
       "id": 105,
@@ -1390,7 +1425,7 @@
       "difficulty": "Medium",
       "review_status": "pending",
       "verification_status": "checks_passed",
-      "checked_at_utc": "2026-10-06T06:06:08.157153+00:00"
+      "checked_at_utc": "2026-10-06T06:11:50.290912+00:00"
     },
     {
       "id": 168,
@@ -1637,8 +1672,15 @@
       "slug": "house-robber",
       "title": "House Robber",
       "category": "Algorithms",
-      "status": "not_written",
-      "language_policy": "python"
+      "status": "written",
+      "language_policy": "python",
+      "lesson_url": "/worked/house-robber/",
+      "lesson_source": "content/lessons/worked/house-robber.md",
+      "source_sha256": "78e1beb630b1d97dcd32336f428dc0a4ec139ce9d95f51444a7bff461a25f2b4",
+      "difficulty": "Medium",
+      "review_status": "pending",
+      "verification_status": "checks_passed",
+      "checked_at_utc": "2026-10-06T06:11:50.290912+00:00"
     },
     {
       "id": 199,
@@ -1653,8 +1695,15 @@
       "slug": "number-of-islands",
       "title": "Number of Islands",
       "category": "Algorithms",
-      "status": "not_written",
-      "language_policy": "python"
+      "status": "written",
+      "language_policy": "python",
+      "lesson_url": "/worked/number-of-islands/",
+      "lesson_source": "content/lessons/worked/number-of-islands.md",
+      "source_sha256": "8142ff765132a14d03eada49a69a06e5fe0217b1e52332d469d6954cb4e36612",
+      "difficulty": "Medium",
+      "review_status": "pending",
+      "verification_status": "checks_passed",
+      "checked_at_utc": "2026-10-06T06:11:50.290912+00:00"
     },
     {
       "id": 201,
@@ -1701,8 +1750,15 @@
       "slug": "reverse-linked-list",
       "title": "Reverse Linked List",
       "category": "Algorithms",
-      "status": "not_written",
-      "language_policy": "python"
+      "status": "written",
+      "language_policy": "python",
+      "lesson_url": "/worked/reverse-linked-list/",
+      "lesson_source": "content/lessons/worked/reverse-linked-list.md",
+      "source_sha256": "52e1acce7f1f991a4340056e94a145e0ad3d5fedf04003a9d3e42bc7cd2d6f86",
+      "difficulty": "Easy",
+      "review_status": "pending",
+      "verification_status": "checks_passed",
+      "checked_at_utc": "2026-10-06T06:11:50.290912+00:00"
     },
     {
       "id": 207,
@@ -1733,7 +1789,7 @@
       "difficulty": "Medium",
       "review_status": "pending",
       "verification_status": "checks_passed",
-      "checked_at_utc": "2026-10-06T06:06:08.157153+00:00"
+      "checked_at_utc": "2026-10-06T06:11:50.290912+00:00"
     },
     {
       "id": 210,
@@ -1788,7 +1844,7 @@
       "difficulty": "Medium",
       "review_status": "pending",
       "verification_status": "checks_passed",
-      "checked_at_utc": "2026-10-06T06:06:08.157153+00:00"
+      "checked_at_utc": "2026-10-06T06:11:50.290912+00:00"
     },
     {
       "id": 216,
@@ -1987,7 +2043,7 @@
       "difficulty": "Hard",
       "review_status": "pending",
       "verification_status": "checks_passed",
-      "checked_at_utc": "2026-10-06T06:06:08.157153+00:00"
+      "checked_at_utc": "2026-10-06T06:11:50.290912+00:00"
     },
     {
       "id": 240,
@@ -2010,8 +2066,15 @@
       "slug": "valid-anagram",
       "title": "Valid Anagram",
       "category": "Algorithms",
-      "status": "not_written",
-      "language_policy": "python"
+      "status": "written",
+      "language_policy": "python",
+      "lesson_url": "/worked/valid-anagram/",
+      "lesson_source": "content/lessons/worked/valid-anagram.md",
+      "source_sha256": "19fc381d25a7c982828e0dce46fb94be96ed752de373ff1f1149bc803c732f00",
+      "difficulty": "Easy",
+      "review_status": "pending",
+      "verification_status": "checks_passed",
+      "checked_at_utc": "2026-10-06T06:11:50.290912+00:00"
     },
     {
       "id": 243,
@@ -2338,8 +2401,15 @@
       "slug": "move-zeroes",
       "title": "Move Zeroes",
       "category": "Algorithms",
-      "status": "not_written",
-      "language_policy": "python"
+      "status": "written",
+      "language_policy": "python",
+      "lesson_url": "/worked/move-zeroes/",
+      "lesson_source": "content/lessons/worked/move-zeroes.md",
+      "source_sha256": "d29e45582d68cd85e0153b27543d7750082c1a2635e1bc6e8e16212c37d68878",
+      "difficulty": "Easy",
+      "review_status": "pending",
+      "verification_status": "checks_passed",
+      "checked_at_utc": "2026-10-06T06:11:50.290912+00:00"
     },
     {
       "id": 284,
@@ -4562,7 +4632,7 @@
       "difficulty": "Medium",
       "review_status": "pending",
       "verification_status": "checks_passed",
-      "checked_at_utc": "2026-10-06T06:06:08.157153+00:00"
+      "checked_at_utc": "2026-10-06T06:11:50.290912+00:00"
     },
     {
       "id": 561,
@@ -6001,7 +6071,7 @@
       "difficulty": "Medium",
       "review_status": "pending",
       "verification_status": "checks_passed",
-      "checked_at_utc": "2026-10-06T06:06:08.157153+00:00"
+      "checked_at_utc": "2026-10-06T06:11:50.290912+00:00"
     },
     {
       "id": 740,
@@ -7096,7 +7166,7 @@
       "difficulty": "Medium",
       "review_status": "pending",
       "verification_status": "checks_passed",
-      "checked_at_utc": "2026-10-06T06:06:08.157153+00:00"
+      "checked_at_utc": "2026-10-06T06:11:50.290912+00:00"
     },
     {
       "id": 876,

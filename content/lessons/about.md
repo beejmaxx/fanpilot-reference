@@ -4,7 +4,7 @@ Fanpilot is a growing guide to LeetCode patterns, data structures, algorithms, a
 
 ## What is here today
 
-The working edition contains a 32-chapter patterns guide, 125 linked practice problems, eight Rust examples in that guide, five worked lessons in Python, a [problem library](/problems/) of 4,072 numbered problems, and two interactive design lessons. The data-structures and algorithms pages organize that material. System design begins with LRU cache and file-system design; a full distributed-systems curriculum is still ahead.
+The working edition contains a 32-chapter patterns guide, 125 linked practice problems, eight Rust examples in that guide, 22 worked lessons in Python, a [problem library](/problems/) of 4,072 numbered problems, and two interactive design lessons. The data-structures and algorithms pages organize that material. System design begins with LRU cache and file-system design; a full distributed-systems curriculum is still ahead.
 
 The browser labs use JavaScript so you can inspect and change state immediately. The principles are language-independent. They complement the Rust examples and are not presented as production services.
 

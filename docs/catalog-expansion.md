@@ -64,3 +64,11 @@ from whether a person has reviewed the explanation.
 
 Difficulty labels are verified against platform pages when each lesson is authored.
 The batch is a proposal, not a claim that its lessons are written or approved.
+
+## Current batch receipt
+
+The foundations-and-transfer batch now contains ten written lessons and awaits
+human review. There are 22 written catalog lessons total. Its code includes
+7,500 seeded reference comparisons and 1,093 exhaustive small rain-water cases.
+The full site's 65 routes and all ten new browser panels were verified locally.
+See `SOL-HANDOFF.md` for continuation scope and ownership of design work.

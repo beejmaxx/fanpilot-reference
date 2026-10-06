@@ -22,7 +22,7 @@
     },
     {
       "name": "Foundations and transfer",
-      "status": "proposed",
+      "status": "awaiting_review",
       "problem_ids": [
         242,
         3,
@@ -35,7 +35,8 @@
         198,
         42
       ],
-      "reason": "Readable Python across hashing, windows, scans, intervals, linked lists, trees, grids and DP; related to the pilot where possible. Includes Trapping Rain Water as a Hard lesson to check depth and presentation."
+      "reason": "Readable Python across hashing, windows, scans, intervals, linked lists, trees, grids and DP; related to the pilot where possible. Includes Trapping Rain Water as a Hard lesson to check depth and presentation.",
+      "lesson_count": 10
     }
   ]
 }

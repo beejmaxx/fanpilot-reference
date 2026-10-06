@@ -1,0 +1,105 @@
+# Full-catalog continuation
+
+Repository: `/Users/bijan/code/projects/fanpilot-reference`.
+Original solution corpus: `/Users/bijan/code/studies/learning/leet_rust/all_leetcode`.
+
+## Objective and current scope
+
+The user means **all 4,072 entries in the frozen catalog**, with readable solutions
+and original explanations. The twenty technique groups in `docs/roadmap.md` help
+choose prerequisites; they are not a stopping point. Work in reviewable chunks.
+The user will switch to Sol after reviewing this batch. Claude handles design
+and navigation; this continuation should focus on content.
+
+Use Python for Algorithms and Pandas, SQL for Database, JavaScript/TypeScript for
+language-specific questions. Keep platform IDs internally for linking and
+reconciliation; organize readers' navigation around titles and concepts.
+
+## State at handoff
+
+- 22 registered worked lessons; 4,050 catalog entries still have no lesson.
+- The original twelve and the next ten have passed automated checks.
+- Neither batch has a recorded source-hash human approval yet; do not invent it.
+- `data/lesson-batches.json` records both batches as awaiting review.
+- `data/lesson-progress.json` inventories every catalog entry.
+- `data/lesson-verification.json` records commands and exact lesson-source hashes.
+- New lessons were committed individually. No changes are deployed or pushed.
+
+The newest ten are Valid Anagram, Longest Substring Without Repeating Characters,
+Move Zeroes, Maximum Subarray, Merge Intervals, Reverse Linked List, Maximum Depth
+of Binary Tree, Number of Islands, House Robber, and Trapping Rain Water.
+Their own displayed tests include 7,500 seeded random reference comparisons,
+1,093 exhaustive small rain-water cases, node-identity checks, a 5,000-node
+linked chain, a 10,000-node tree chain and a 300×300 land grid.
+
+Validation completed: 89 printed Python blocks; existing extra reference tests;
+7 lab tests; 65 generated routes and 361 internal-link targets; desktop/mobile,
+search, labs, problem-library and no-JavaScript checks. Separately verified all
+10 new solution-browser panels, descriptions, examples, highlighted code and
+lesson links. Passing tests is evidence about code, not human content approval.
+
+## Authoring contract
+
+Read `docs/lesson-template.md` and existing lessons before editing. Steps 1–6
+stay visible: original problem statement and examples, baseline+bottleneck,
+observation, solution+trace, short correctness argument, complexity+failure case.
+Only extra checks, related problems and reconstruction prompts are collapsed
+between `{{DEEP_DIVE}}` and `{{END_DEEP_DIVE}}`.
+
+Files: `content/lessons/worked/<slug>.md`. Preserve the exact subtitle format
+`*Worked lesson · Technique · LC number*`. Use the numbered template headings.
+The solution browser extracts the first Python block under `The solution and a
+trace`; include all imports and required node/helper types in that block so the
+copied code is self-contained. LeetCode wrappers should match platform methods.
+Do not claim official acceptance. Label any behavior outside the official
+contract, such as accepting empty input.
+
+Register each lesson in EXTRA in `scripts/build.py`; content additions should
+change only those registrations. Do not redesign `src/` or
+`scripts/solution_browser.py` while Claude owns them. Layout changes from
+side-by-side to stacked panels are CSS concerns, not content rewrites.
+
+Use local references where they contain the needed contract. Local solutions
+are reference material, not permission to copy unlicensed/adapted code into
+MIT examples. Write original Python and prose; link statements instead of
+reproducing them. Verify missing contracts/difficulty from primary sources.
+Do not copy private `python_practice/` attempts or tutoring records.
+
+## Continuing after review
+
+Choose the next batch of ten (five for unusually complex Hard problems).
+Favor small related clusters and useful contrasting variants, filling missing
+techniques first and eventually the complete catalog. The learner may authorize
+larger runs later. Respect the present request to review between batches.
+
+For each lesson: verify its printed code against a simpler independent baseline,
+include edge cases and a seeded generated comparison, and commit separately.
+State mutation, tie/output-order, empty-input and numeric assumptions explicitly.
+Do not mark human approval based on test results.
+
+Run before handing off a batch:
+
+```sh
+python3 scripts/build.py
+python3 scripts/check-lessons.py
+npm test
+```
+
+With the preview server running, `python3 scripts/catalog-progress.py --verify`
+runs these plus `npm run test:site` and updates source-hash receipts. Independently
+check each new panel at `/solutions/#<lesson-slug>`; the normal manifest does not
+exercise browser interactions on every solution panel. Review desktop/mobile
+presentation and actual copyable source, not just builder success.
+
+## Static-site scaling for Claude
+
+Stay with static HTML/JSON and browser JavaScript. A database is not required for
+publishing thousands of lessons. Before large expansion, move the search index
+out of every page and make the solution browser load individual problem data
+(or small batches) instead of embedding all panels. At 22 lessons the generated
+home page is about 285 KiB and the browser about 101 KiB, uncompressed. Thousands
+of panels should not be shipped on one request. Personal review state can stay
+local; a backend is a future choice for synced accounts or remote code execution.
+
+No Sites, GitHub Actions, accounts or database setup are requested. Deployments
+remain manual. Keep system-design expansion separate from completing this catalog.
