@@ -47,6 +47,7 @@ EXTRA = [('index', '/', 'Start here', 'hub'), ('patterns', '/patterns/', 'LeetCo
          ('worked/longest-substring-without-repeating-characters', '/worked/longest-substring-without-repeating-characters/', 'Longest Substring Without Repeating Characters · Medium', 'Worked lessons'),
          ('worked/move-zeroes', '/worked/move-zeroes/', 'Move Zeroes · Easy', 'Worked lessons'),
          ('worked/maximum-subarray', '/worked/maximum-subarray/', 'Maximum Subarray · Medium', 'Worked lessons'),
+         ('worked/merge-intervals', '/worked/merge-intervals/', 'Merge Intervals · Medium', 'Worked lessons'),
          ('lru-cache', '/system-design/lru-cache/', 'LRU cache', 'System design'),
          ('file-system', '/system-design/file-system/', 'File system', 'System design'),
          ('research', '/research/', 'Research & sources', 'The reference'),
